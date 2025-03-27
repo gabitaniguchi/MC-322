@@ -9,8 +9,7 @@ package lab01;
 /**
  * Contém a estrutura de implementação da aplicação.
  * 
- * @author Gabriel Leite - 216180
- * @author Caio Rhoden - 214129
+ * @author Gabriela Taniguchi - 281773
  */
 public class App {
 
@@ -49,3 +48,4 @@ public class App {
         // DEMONSTRAÇÃO PASSO 5
     }
 }
+
