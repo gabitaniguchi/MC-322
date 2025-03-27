@@ -9,9 +9,9 @@ package lab01;
 /**
  * Contém a estrutura de implementação de um Ingresso.
  * 
- * @author Gabriel Leite - 216180
- * @author Caio Rhoden - 214129
+ * @author Gabriela Taniguchi - 281773
  */
+
 public abstract class Ingresso {
 
     private Evento evento;
@@ -29,5 +29,9 @@ public abstract class Ingresso {
      * @return o preço do Ingresso
      */
     public abstract double getPreco();
+
+    public Evento getEvento(){
+        return this.evento;
+    }
     
 }
