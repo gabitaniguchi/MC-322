@@ -8,13 +8,13 @@ package lab01;
 /**
  * Contém a estrutura de implementação de um Usuario.
  * 
- * @author Gabriel Leite - 216180
- * @author Caio Rhoden - 214129
+ * @author Gabriela Taniguchi - 281773
  */
 public class Usuario {
 
     private String nome;
     private String email;
+    private Ingresso ingresso;
 
     /**
      * Construtor da classe Usuario
@@ -28,7 +28,7 @@ public class Usuario {
 
     /**
      * Retorna o nome do usuário
-     * @return o nome do usupario
+     * @return o nome do usuário
      */
     public String getNome(){
         return nome;
@@ -40,5 +40,37 @@ public class Usuario {
      */
     public void setNome(String nome){
         this.nome = nome;
+    }
+
+    /**
+     * Retorna o email do usuário
+     * @return o email do usuário
+     */
+    public String getEmail(){
+        return email;
+    }
+
+    /**
+     * Altera o email do usuário para `email` 
+     * @param email o novo email do usuário
+     */
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    /**
+     * Retorna o ingresso do usuário
+     * @return o ingresso do usuário
+     */
+    public Ingresso getIngresso(){
+        return ingresso;
+    }
+
+    /**
+     * Altera o ingresso do usuário para `ingresso` 
+     * @param ingresso o novo ingresso do usuário
+     */
+    public void setingresso(Ingresso ingresso){
+        this.ingresso = ingresso;
     }
 }
