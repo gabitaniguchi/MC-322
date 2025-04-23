@@ -3,12 +3,13 @@
  */
 package lab02;
 
-
+import java.util.List;
 
 public class Cliente {
 
     private String nome;
     private String email;
+    private List<Ingresso> ingressos;
 
     /**
      * Construtor da classe cliente
@@ -50,6 +51,18 @@ public class Cliente {
      */
     public void setEmail(String email){
         this.email = email;
+    }
+
+    /**
+      * Adiciona o ingresso vendido ao cliente à lista de ingressos
+      * @param ingresso o ingresso vendido
+      */
+    public void adicionarIngresso(Ingresso ingresso){
+        this.ingressos.add(ingresso); 
+    }
+
+    public List<Ingresso> getIngressos(){
+        return ingressos;
     }
 
 }
