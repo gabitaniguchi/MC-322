@@ -54,15 +54,36 @@ public class Cliente {
     }
 
     /**
-      * Adiciona o ingresso vendido ao cliente à lista de ingressos
-      * @param ingresso o ingresso vendido
-      */
+     * Adiciona o ingresso vendido ao cliente à lista de ingressos
+     * @param ingresso o ingresso vendido
+     */
     public void adicionarIngresso(Ingresso ingresso){
         this.ingressos.add(ingresso); 
     }
 
+    /**
+     * Adiciona uma lista de ingressos vendidos à lista de ingressos ao cliente
+     * @param novosIngressos os novos ingressos vendidos
+     */
+    public void adicionarIngresso(List<Ingresso> novosIngressos){
+        this.ingressos.addAll(novosIngressos);
+    }
+
+    /**
+     *  Remove ingresso vendido ao cliente da lista de ingressos
+     * @param ingresso o ingresso a ser removido
+     */
+    public void removerIngresso(Ingresso ingresso){
+        this.ingressos.remove(ingresso);
+    }
+
+    /**
+     * Retorna a lista de ingresso vendidos
+     * @return a lista de ingresso vendidos
+     */
     public List<Ingresso> getIngressos(){
         return ingressos;
     }
+
 
 }

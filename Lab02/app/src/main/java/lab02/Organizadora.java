@@ -1,5 +1,7 @@
 package lab02;
 
+import java.util.List;
+
 public class Organizadora {
 
     private String nome;
@@ -16,6 +18,45 @@ public class Organizadora {
         this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;
+    }
+
+    /**
+     * Sobrecarga do método criarEvento para o Evento Festival
+     * @param nome o nome do Evento
+     * @param local o local do Evento
+     * @param precoIngresso o preço do Ingresso do Evento]
+     * @param organizadora a organizadora do Evento
+     * @param data a data do Festival
+     * @param lineup a lista com os nomes dos artistas do Festival
+     * @param duracao a duração do Festival
+     */
+    public EventoFestival criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> lineup, int duracao){
+        return new EventoFestival(nome, local, precoIngresso, organizadora, data, lineup, duracao);
+    }
+
+    /**
+     * Sobrecarga do método criarEvento para o Evento Jogo
+     * @param nome o nome do Evento
+     * @param local o local do Evento
+     * @param precoIngresso o preço do Ingresso do Evento
+     * @param organizadora a organizadora do Evento
+     * @param data a data do Evento
+     * @param times lista com os nomes dos times que se enfrentam no Evento
+     */
+    public EventoJogo criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> times){
+        return new EventoJogo(nome, local, precoIngresso, organizadora, data, times);
+    }
+
+    /**
+    * Sobrecarga do método criarEvento para o Evento Jogo
+    * @param nome o nome do Evento
+    * @param local o local do Evento
+    * @param precoIngresso o preço do Ingresso do Evento
+    * @param artista o artista do Evento
+    * @param organizadora a organizadora do Evento
+    */
+    public EventoShow criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, String artista){
+        return new EventoShow(nome, local, precoIngresso, organizadora, data, artista);
     }
 
     

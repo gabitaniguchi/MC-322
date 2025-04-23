@@ -27,5 +27,20 @@ public class ImobiliariaDeEventos {
     public void adicionarLocal(Local local) {
         this.locais.add(local);
     }
+
+    public Local buscarLocal(String nome){
+        for (Local atual : locais){
+            if(atual.getNome().equals(nome)) return atual;
+        }
+
+        return null;
+    }
+
+    public Local buscarLocal(int capacidadeMaxima){
+        for (Local atual : locais){
+            if(atual.getCapacidade()==capacidadeMaxima) return atual;
+        }
+        return null;
+    }
     
 }
