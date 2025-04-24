@@ -87,13 +87,27 @@ public class Cliente {
         return ingressos;
     }
 
+    /**
+     * Exceção referente a não encontrar ingresso que satisfaça alguma condição
+     * Se nenhum ingresso for encontrado lança uma exceção
+     */
     public class IngressoNaoEncontradoException extends Exception{
         public IngressoNaoEncontradoException(String mensagem) {
             super(mensagem);
         }
     }
 
-    public void cancelarIngresso(Evento evento){
+    /**
+     * Exceção referente a impossibilidade de cancelar um evento
+     * Se o evento não pode ser cancelado, lança uma exceção
+     */
+    public class CancelamentoNaoPermitidoException extends Exception{
+        public CancelamentoNaoPermitidoException(String mensagem) {
+            super(mensagem);
+        }
+    }
+
+    public void cancelarIngresso(Evento evento, String dataAtual){
         try{
             boolean encontrado = false;
             for(Ingresso ingresso: ingressos){
@@ -103,10 +117,19 @@ public class Cliente {
                 }
             }
 
-            if(encontrado==false){
+            // se nenhum ingresso foi encontrado para ser cancelado, lança uma exceção
+            if(!encontrado){
                 throw new IngressoNaoEncontradoException("Ingresso não encontrado");
             } 
+
+            // se a data do evento já passou, lança uma exceção
+            if(evento.data.compareTo(dataAtual)<0){
+                throw new CancelamentoNaoPermitidoException("Não é possível cancelar um evento passado");
+            }
+
         } catch(IngressoNaoEncontradoException e){
+            System.out.println(e.getMessage());
+        } catch(CancelamentoNaoPermitidoException e){
             System.out.println(e.getMessage());
         }
 

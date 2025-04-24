@@ -21,7 +21,7 @@ public class Organizadora {
     }
 
     /**
-     * Sobrecarga do método criarEvento para o Evento Festival
+     * Método criarEvento para o Evento Festival
      * @param nome o nome do Evento
      * @param local o local do Evento
      * @param precoIngresso o preço do Ingresso do Evento]
@@ -35,7 +35,7 @@ public class Organizadora {
     }
 
     /**
-     * Sobrecarga do método criarEvento para o Evento Jogo
+     * Método criarEvento para o Evento Jogo
      * @param nome o nome do Evento
      * @param local o local do Evento
      * @param precoIngresso o preço do Ingresso do Evento
@@ -48,7 +48,7 @@ public class Organizadora {
     }
 
     /**
-    * Sobrecarga do método criarEvento para o Evento Jogo
+    * Método criarEvento para o Evento Jogo
     * @param nome o nome do Evento
     * @param local o local do Evento
     * @param precoIngresso o preço do Ingresso do Evento

@@ -14,6 +14,7 @@ public abstract class Evento {
     protected Organizadora organizadora;
     protected String data;
     protected List<Ingresso> ingressosVendidos;
+    protected boolean cancelado;
 
     /**
      * Construtor da classe Evento
@@ -30,6 +31,7 @@ public abstract class Evento {
         this.organizadora = organizadora;
         this.data = data;
         this.ingressosVendidos = new ArrayList<>();
+        this.cancelado = false;
     }
 
     /**
@@ -77,7 +79,16 @@ public abstract class Evento {
      * @param precoIngresso o novo precoIngresso do Evento
      */
     public void setPrecoIngresso(double precoIngresso){
-        this.precoIngresso = precoIngresso;
+        try{
+            // se o preço é negativo é inválido e lança exceção
+            if(precoIngresso < 0){
+                throw new IllegalArgumentException("Preço inválido");
+            }
+
+            this.precoIngresso = precoIngresso;
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public String descricao(){
@@ -92,25 +103,74 @@ public abstract class Evento {
         return data;
     }
 
+    /**
+     * Cancela o evento 
+     */
+    public void cancelarEvento(){
+        this.cancelado = true;
+    }
+
+    /**
+     * Retorna se o evento foi cancelado ou não
+     * @return se o evento foi cancelado
+     */
+    public boolean getCancelamento(){
+        return cancelado;
+    }
+
+    /**
+     * Exceção referente ao número de ingressos disponíveis
+     */
     public class IngressosEsgotadosException extends Exception{
         public IngressosEsgotadosException(String mensagem) {
             super(mensagem);
         }
     }
 
+    /**
+     * Exceção referente a disponibilidade do evento 
+     * Se o evento for cancelado lança uma exceção
+     */
+    public class EventoIndisponivelException extends Exception{
+        public EventoIndisponivelException(String mensagem) {
+            super(mensagem);
+        }
+    }
+
+    /**
+     * Atribui o ingresso como vendido ao cliente
+     * @param cliente o cliente que comprou o ingresso
+     */
     public void venderIngresso(Cliente cliente){
         try{
+            // se os ingressos esgotaram, lança um erro
             if(this.ingressosVendidos.size() >= this.local.getCapacidade()){
                 throw new IngressosEsgotadosException("Ingressos Esgotados");
+            }
+
+            // se o evento está cancelado, lança um erro
+            if(this.cancelado) {
+                throw new EventoIndisponivelException("Evento Indisponível");
             }
             
             Ingresso ingresso = new Ingresso(this, this.precoIngresso);
             this.ingressosVendidos.add(ingresso);
             cliente.adicionarIngresso(ingresso);
+
         } catch (IngressosEsgotadosException e){
+            System.out.println(e.getMessage());
+        } catch (EventoIndisponivelException e){
             System.out.println(e.getMessage());
         }
         
+    }
+
+    /**
+     * Retorna a lista de ingressos vendidos do evento
+     * @return lista de ingressos vendidos 
+     */
+    public List<Ingresso> getIngressosVendidos(){
+        return ingressosVendidos;
     }
 
 

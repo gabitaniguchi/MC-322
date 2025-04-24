@@ -21,6 +21,14 @@ public class ImobiliariaDeEventos {
     }
 
     /**
+     * Retorna o nome da Imobiliaria de Eventos
+     * @retun o nome da Imobiliaria de Eventos
+     */
+    public String getNome(){
+        return nome;
+    }
+
+    /**
      * Adiciona um local à lista de locais disponíveis
      * @param local o local a ser adicionado
      */
