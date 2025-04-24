@@ -40,4 +40,8 @@ public class Ingresso {
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
+
+    public Evento getEvento(){
+        return this.evento;
+    }
 }

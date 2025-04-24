@@ -3,6 +3,7 @@
  */
 package lab02;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
@@ -19,6 +20,7 @@ public class Cliente {
     public Cliente(String nome, String email){
         this.nome = nome;
         this.email = email;
+        this.ingressos = new ArrayList<>();
     }
 
     /**
@@ -83,6 +85,31 @@ public class Cliente {
      */
     public List<Ingresso> getIngressos(){
         return ingressos;
+    }
+
+    public class IngressoNaoEncontradoException extends Exception{
+        public IngressoNaoEncontradoException(String mensagem) {
+            super(mensagem);
+        }
+    }
+
+    public void cancelarIngresso(Evento evento){
+        try{
+            boolean encontrado = false;
+            for(Ingresso ingresso: ingressos){
+                if(ingresso.getEvento().equals(evento)){
+                    this.ingressos.remove(ingresso);
+                    encontrado = true;
+                }
+            }
+
+            if(encontrado==false){
+                throw new IngressoNaoEncontradoException("Ingresso não encontrado");
+            } 
+        } catch(IngressoNaoEncontradoException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
 

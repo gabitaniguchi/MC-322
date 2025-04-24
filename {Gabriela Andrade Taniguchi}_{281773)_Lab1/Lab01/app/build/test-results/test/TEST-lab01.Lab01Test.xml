@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lab01.Lab01Test" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-04-01T20:24:03" hostname="equador.lab.ic.unicamp.br" time="0.024">
+  <properties/>
+  <testcase name="getCapacidadeEventoShow()" classname="lab01.Lab01Test" time="0.013"/>
+  <testcase name="adicionarIngressoMeia()" classname="lab01.Lab01Test" time="0.004"/>
+  <testcase name="getPrecoIngressoInteira()" classname="lab01.Lab01Test" time="0.001"/>
+  <testcase name="setAndGetArtistaEventoShow()" classname="lab01.Lab01Test" time="0.001"/>
+  <testcase name="getPrecoIngressoMeia()" classname="lab01.Lab01Test" time="0.0"/>
+  <system-out><![CDATA[Ingressos vendidos: 1
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
