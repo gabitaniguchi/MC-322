@@ -73,6 +73,14 @@ public abstract class Evento {
     public double getPrecoIngresso(){
         return this.precoIngresso;
     }
+    
+    /**
+     * Retorna a orgaizadora do Evento
+     * @return a organizadora do Evento
+     */
+    public Organizadora getOrganizadora(){
+        return organizadora;
+    }
 
     /**
      * Altera o precoIngresso do Evento para `precoIngresso` 
