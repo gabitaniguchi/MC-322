@@ -6,7 +6,7 @@ package lab02;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 
     private String nome;
     private String email;
@@ -133,6 +133,23 @@ public class Cliente {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    /**
+     * Compara se dois clientes possuem ingressos para o mesmo evento
+     * S@return 0 se possuem o ingresso em comum e -1 caso contrário
+     */
+    @Override
+    public int compareTo(Cliente cliente2){
+        for(Ingresso ingresso1: this.ingressos){
+            for(Ingresso ingresso2 : cliente2.getIngressos()){
+                if(ingresso1.getEvento().equals(ingresso2.getEvento())){
+                    return 0;
+                }
+            }
+        }
+
+        return -1;
     }
 
 

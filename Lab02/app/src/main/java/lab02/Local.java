@@ -8,7 +8,7 @@ package lab02;
 /**
  * Contém a estrutura de implementação de um Local.
  * 
- * @author Gabriel Leite - 216180
+ * @author Gabriela Taniguchi - 281773
  */
 public class Local{
     private String nome;

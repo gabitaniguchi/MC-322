@@ -15,6 +15,10 @@ public class EventoPorNomeFilter implements Filter<Evento> {
         this.nome = nome;
     }
 
+    /**
+     * Filtra os eventos pelo nome
+     * @return lista com todos os eventos com o nome em questão
+     */
     @Override
     public List<Evento> meetCriteria(List<Evento> eventos){
         List<Evento> eventosFiltrados = new ArrayList<Evento>();

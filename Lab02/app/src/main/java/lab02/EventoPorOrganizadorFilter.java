@@ -15,6 +15,11 @@ public class EventoPorOrganizadorFilter implements Filter<Evento> {
         this.organizadora = organizadora;
     }
 
+
+    /**
+     * Filtra os eventos pela organizadora
+     * @return lista com todos os eventos com a organizadora em questão
+     */
     @Override
     public List<Evento> meetCriteria(List<Evento> eventos){
         List<Evento> eventosFiltrados = new ArrayList<Evento>();

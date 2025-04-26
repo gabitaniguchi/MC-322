@@ -1,5 +1,6 @@
 package lab02;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Organizadora {
@@ -7,6 +8,7 @@ public class Organizadora {
     private String nome;
     private int cnpj;
     private String endereco;
+    private List<Evento> eventos;
 
     /**
      * Construtor da classe Organizadora
@@ -18,6 +20,7 @@ public class Organizadora {
         this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;
+        this.eventos = new ArrayList<>();
     }
 
     /**
@@ -29,9 +32,12 @@ public class Organizadora {
      * @param data a data do Festival
      * @param lineup a lista com os nomes dos artistas do Festival
      * @param duracao a duração do Festival
+     * @return novo Evento Festival
      */
     public EventoFestival criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> lineup, int duracao){
-        return new EventoFestival(nome, local, precoIngresso, organizadora, data, lineup, duracao);
+        EventoFestival evento = new EventoFestival(nome, local, precoIngresso, organizadora, data, lineup, duracao);
+        eventos.add(evento);
+        return evento;
     }
 
     /**
@@ -42,9 +48,12 @@ public class Organizadora {
      * @param organizadora a organizadora do Evento
      * @param data a data do Evento
      * @param times lista com os nomes dos times que se enfrentam no Evento
+     * @return novo Evento Jogo
      */
     public EventoJogo criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> times){
-        return new EventoJogo(nome, local, precoIngresso, organizadora, data, times);
+        EventoJogo evento = new EventoJogo(nome, local, precoIngresso, organizadora, data, times);
+        eventos.add(evento);
+        return evento;
     }
 
     /**
@@ -54,9 +63,16 @@ public class Organizadora {
     * @param precoIngresso o preço do Ingresso do Evento
     * @param artista o artista do Evento
     * @param organizadora a organizadora do Evento
+    * @return novo Evento Show
     */
     public EventoShow criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, String artista){
-        return new EventoShow(nome, local, precoIngresso, organizadora, data, artista);
+        EventoShow evento = new EventoShow(nome, local, precoIngresso, organizadora, data, artista);
+        eventos.add(evento);
+        return evento;
+    }
+
+    public List<Evento> buscarEventos(Filter<Evento> filtro){
+        return filtro.meetCriteria(eventos);
     }
 
     

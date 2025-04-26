@@ -15,6 +15,10 @@ public class EventoPorLocalFilter implements Filter<Evento> {
         this.local = local;
     }
 
+    /**
+     * Filtra os eventos pelo local
+     * @return lista com todos os eventos com o local em questão
+     */
     @Override
     public List<Evento> meetCriteria(List<Evento> eventos){
         List<Evento> eventosFiltrados = new ArrayList<Evento>();

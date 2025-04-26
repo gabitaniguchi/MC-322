@@ -15,6 +15,10 @@ public class EventoPorDataFilter implements Filter<Evento> {
         this.data = data;
     }
 
+    /**
+     * Filtra os eventos pela data
+     * @return lista com todos os eventos com a data em questão
+     */
     @Override
     public List<Evento> meetCriteria(List<Evento> eventos){
         List<Evento> eventosFiltrados = new ArrayList<Evento>();
