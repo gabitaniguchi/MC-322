@@ -68,6 +68,14 @@ public class Local{
     }
 
     /**
+     * Altera a disponibilidade do local
+     * @param disponibilidade se o local está ou não disponível
+     */
+    public void setDisponibilidade(boolean disponibilidade){
+        this.disponivel = disponibilidade;
+    }
+
+    /**
      * Retorna se o evento está disponível ou não
      * @return a disponibilidade do local
      */

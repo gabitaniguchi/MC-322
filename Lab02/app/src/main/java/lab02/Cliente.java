@@ -9,18 +9,17 @@ import java.util.List;
 public class Cliente implements Comparable<Cliente>{
 
     private String nome;
-    private String email;
     private List<Ingresso> ingressos;
+    private List<Notificavel> meiosDeNotificacao;
 
     /**
      * Construtor da classe cliente
      * @param nome o nome do cliente
-     * @param email o email do cliente
      */
-    public Cliente(String nome, String email){
+    public Cliente(String nome){
         this.nome = nome;
-        this.email = email;
         this.ingressos = new ArrayList<>();
+        this.meiosDeNotificacao = new ArrayList<>();
     }
 
     /**
@@ -37,22 +36,6 @@ public class Cliente implements Comparable<Cliente>{
      */
     public void setNome(String nome){
         this.nome = nome;
-    }
-
-    /**
-     * Retorna o email do cliente
-     * @return o email do cliente
-     */
-    public String getEmail(){
-        return email;
-    }
-
-    /**
-     * Altera o email do cliente para `email` 
-     * @param email o novo email do cliente
-     */
-    public void setEmail(String email){
-        this.email = email;
     }
 
     /**
@@ -107,24 +90,35 @@ public class Cliente implements Comparable<Cliente>{
         }
     }
 
+    /**
+     * Cancela os ingressos referente a algum evento específico
+     * @param evento o evento dos ingressos a serem cancelados
+     * @param dataAtual a data do cancelamento para verificar se é possível
+     */
     public void cancelarIngresso(Evento evento, String dataAtual){
         try{
-            boolean encontrado = false;
-            for(Ingresso ingresso: ingressos){
-                if(ingresso.getEvento().equals(evento)){
-                    this.ingressos.remove(ingresso);
-                    encontrado = true;
-                }
-            }
-
-            // se nenhum ingresso foi encontrado para ser cancelado, lança uma exceção
-            if(!encontrado){
-                throw new IngressoNaoEncontradoException("Ingresso não encontrado");
-            } 
 
             // se a data do evento já passou, lança uma exceção
             if(evento.data.compareTo(dataAtual)<0){
                 throw new CancelamentoNaoPermitidoException("Não é possível cancelar um evento passado");
+            }
+
+            // busca os ingressos referente ao evento em questão
+            List<Ingresso> ingressosParaRemover = new ArrayList<>();
+            for(Ingresso ingresso: ingressos){
+                if(ingresso.getEvento().equals(evento)){
+                    ingressosParaRemover.add(ingresso);
+                }
+            }
+
+            // se nenhum ingresso foi encontrado para ser cancelado, lança uma exceção
+            if(ingressosParaRemover.isEmpty()){
+                throw new IngressoNaoEncontradoException("Ingresso não encontrado");
+            } 
+
+            // remove todos os ingressos do evento em questão
+            for(Ingresso ingresso: ingressosParaRemover){
+                ingressos.remove(ingresso);
             }
 
         } catch(IngressoNaoEncontradoException e){
@@ -137,7 +131,7 @@ public class Cliente implements Comparable<Cliente>{
 
     /**
      * Compara se dois clientes possuem ingressos para o mesmo evento
-     * S@return 0 se possuem o ingresso em comum e -1 caso contrário
+     * @return 0 se possuem o ingresso em comum e -1 caso contrário
      */
     @Override
     public int compareTo(Cliente cliente2){
@@ -152,5 +146,31 @@ public class Cliente implements Comparable<Cliente>{
         return -1;
     }
 
+    /**
+     * Adiciona algum meio de notificação, como Email ou SMS
+     * @param meioDeNotificao o meio de notificação a ser adiicionado
+     */
+    public void adicionarMeioDeNotificacao(Notificavel meioDeNotificacao){
+        this.meiosDeNotificacao.add(meioDeNotificacao);
+    }
+
+    /**
+     * Exibe a notificação por algum meio específico
+     * @param mensagem a mensagem a ser notificada
+     * @param meioDeNotificacao o meio que exibirá a notificação 
+     */
+    public void notificarCliente(String mensagem, Notificavel meioDeNotificacao){
+        meioDeNotificacao.notificar(mensagem);
+    }
+
+    /**
+     * Exibe a notificação por todos os veículos ou meios notificáveis
+     * @param mensagem a mensagem a ser notificada
+     */
+    public void todasNotificacoes(String mensagem){
+        for(Notificavel  meio: meiosDeNotificacao){
+            meio.notificar(mensagem);
+        }
+    }
 
 }

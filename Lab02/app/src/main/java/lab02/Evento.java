@@ -7,7 +7,7 @@ package lab02;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Evento {
+public class Evento {
     protected String nome;
     protected Local local;
     protected double precoIngresso; // preço base do ingresso
@@ -15,6 +15,8 @@ public abstract class Evento {
     protected String data;
     protected List<Ingresso> ingressosVendidos;
     protected boolean cancelado;
+    protected List<Cliente> clientes;
+    protected List<CaracteristicaDeEvento> caracteristicas;
 
     /**
      * Construtor da classe Evento
@@ -32,6 +34,8 @@ public abstract class Evento {
         this.data = data;
         this.ingressosVendidos = new ArrayList<>();
         this.cancelado = false;
+        this.clientes = new ArrayList<>();
+        this.caracteristicas = new ArrayList<>();
     }
 
     /**
@@ -99,8 +103,11 @@ public abstract class Evento {
         }
     }
 
-    public String descricao(){
-        return "Evento: " + this.nome + " - Local: " + this.local;
+    public void descricao(){
+        System.out.println("Evento: " + this.nome + " - Local: " + this.local + " - Data " + data);
+        for (CaracteristicaDeEvento c : caracteristicas) {
+            System.out.println("- " + c.descricao());
+        }
     }
 
     /**
@@ -112,10 +119,16 @@ public abstract class Evento {
     }
 
     /**
-     * Cancela o evento 
+     * Cancela o evento e os ingressos dos clientes daquele evento
+     * @param dataAtual a data do cancelamento
      */
-    public void cancelarEvento(){
+    public void cancelarEvento(String dataAtual){
         this.cancelado = true;
+        // cancela os ingressos de todos os clientes que compraram o evento
+        for(Cliente cliente: clientes){
+            cliente.cancelarIngresso(this, dataAtual);
+        }
+        
     }
 
     /**
@@ -164,6 +177,7 @@ public abstract class Evento {
             Ingresso ingresso = new Ingresso(this, this.precoIngresso);
             this.ingressosVendidos.add(ingresso);
             cliente.adicionarIngresso(ingresso);
+            clientes.add(cliente);
 
         } catch (IngressosEsgotadosException e){
             System.out.println(e.getMessage());
@@ -181,5 +195,8 @@ public abstract class Evento {
         return ingressosVendidos;
     }
 
+    public void adicionarCaracteristica(CaracteristicaDeEvento caracteristica){
+        this.caracteristicas.add(caracteristica);
+    }
 
 }
