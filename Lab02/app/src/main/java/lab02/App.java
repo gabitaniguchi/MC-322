@@ -9,15 +9,15 @@ import java.util.List;
 
 /**
  * Contém a estrutura de implementação da aplicação.
- * 
- * @author Gabriela Taniguchi - 281773
- */
+* 
+* @author Gabriela Taniguchi - 281773
+*/
 public class App {
 
     /**
      * Aplicação principal
-     * @param args
-     */
+    * @param args
+    */
     public static void main(String[] args) {
 
         // Desenvolvimento de Cenário de Uso
@@ -72,14 +72,56 @@ public class App {
         // deve lançar um erro de capacidade insuficiente
         praca.alocarParaEvento(eventoLotado);
 
+
         // 3 - Venda de ingressos com tratamento de IngressoEsgotadoException
 
-        
+        Evento eventoPequeno = new Evento("Clube do livro", praca, 15.0, organizadora, "10/04/2025");
+        // deve lançar uma erro de ingressos esgotados
+        for(int i=1; i<=110; i++){
+            eventoPequeno.venderIngresso(cliente);
+        }
+
         // 4 - Cancelamento de ingressos com tratamento de IngressoNaoEncontradoException e CancelamentoNaoPermitidoException
+        Evento mfp = new Evento("Maratona Feminina de Programacao", InstitutoDeComputacao, 0, organizadora, "06/07/2025");
+        // lança erro de ingresso não encontrado
+        cliente.cancelarIngresso(mfp, "27/04/2025");
+        // lança erro de cancelamento não permitido
+        cliente.cancelarIngresso(eventoPequeno, "27/04/2025");
+        
+        
         // 5 - Utilização das sobrecargas dos métodos de busca
+
         // 6 - Utilização dos filtros da subseção 3.4
+
+        
         // 7 - Demonstração da classe de notificação email
+
+        Email email = new Email("g281773@dac.unicamp.br");
+        SMS sms = new SMS(98889822);
+
+        cliente.adicionarMeioDeNotificacao(email);
+        cliente.adicionarMeioDeNotificacao(sms);
+        cliente.todasNotificacoes("Prazo do laboratorio 02 para terca-feira");
+        cliente.notificarCliente("Votacao para reitor, confira as instrucoes", email);
+        cliente.notificarCliente("Seu pacote de dados venceu e precisa ser renovado", sms);
+        
         // 8 - Comparação entre Clientes com os dois cenários de possuirem o ingresso para o mesmo evento
+        Cliente cliente1 = new Cliente("Ana Clara");
+        Cliente cliente2 = new Cliente("Ana Lucia");
+        Ingresso ingressoShow = new Ingresso(eventoLotado, 300);
+        Ingresso ingressoMaratona = new Ingresso(mfp, 0);
+
+        cliente1.adicionarIngresso(ingressoShow);
+        cliente2.adicionarIngresso(ingressoMaratona);
+
+        if(cliente1.compareTo(cliente2)<0){
+            System.out.println(cliente1 + " e " + cliente2 + " nao vao juntas para o evento " + mfp.getNome());
+        }
+        cliente1.adicionarIngresso(ingressoMaratona);
+
+        if(cliente1.compareTo(cliente2)==0){
+            System.out.println(cliente1 + " e " + cliente2 + " vao para o evento " + mfp.getNome());
+        }
         
     }
 }
