@@ -75,7 +75,11 @@ public class App {
 
         Cliente cliente = new Cliente("Joao Pedro Silva");
         cliente.adicionarIngresso(ingresso);
+        evento.venderIngresso(cliente, ingresso);
         cliente.adicionarIngresso(ingressos);
+        for(Ingresso ingressoVendido : ingressos){
+            evento.venderIngresso(cliente, ingressoVendido);
+        }
 
         // Imprime todos os ingressos do cliente
         List<Ingresso> todosOsIngressos = cliente.getIngressos();
@@ -95,7 +99,6 @@ public class App {
         System.out.println("0 local buscado é: " + imobiliaria.buscarLocal("Autodromo de Interlagos").getNome() + "\n");
 
 
-
         // 2 - Alocação de locais com tratamento de LocalIndisponivelException e CapacidadeInsuficienteException
         
         System.out.println("ETAPA 2 - Exceções para alocar local");
@@ -103,7 +106,9 @@ public class App {
         Evento eventoLotado = new Evento("Show Lady Gaga", localFestival, 300.0, organizadora, "10/05/2025");
 
         for(int i=1; i<=200; i++){
-            eventoLotado.venderIngresso(cliente);
+            Ingresso ingressoShow = new Ingresso(eventoLotado, 300.0);
+            eventoLotado.venderIngresso(cliente, ingressoShow);
+            cliente.adicionarIngresso(ingressoShow);
         }
 
         Local localPraca = new Local("Praca do Coco", 100);
@@ -124,10 +129,12 @@ public class App {
         Organizadora organizadora2 = new Organizadora("Campinas Eventos", 10102, "Barão Geraldo, Avenida Doutor Romeu Tortima");
 
         Evento eventoPequeno = new Evento("Clube do livro", localPraca, 15.0, organizadora2, "27/04/2025");
+        
         // lança uma erro de ingressos esgotados
         for(int i=1; i<=101; i++){
-            eventoPequeno.venderIngresso(cliente);
+            eventoPequeno.venderIngresso(cliente, new Ingresso(eventoPequeno, 15.0));
         }
+        cliente.adicionarIngresso(eventoPequeno.getIngressosVendidos());
         System.out.println();
 
         // // 4 - Cancelamento de ingressos com tratamento de IngressoNaoEncontradoException e CancelamentoNaoPermitidoException

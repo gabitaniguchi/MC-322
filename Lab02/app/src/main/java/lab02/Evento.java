@@ -164,7 +164,7 @@ public class Evento {
      * Atribui o ingresso como vendido ao cliente
      * @param cliente o cliente que comprou o ingresso
      */
-    public void venderIngresso(Cliente cliente){
+    public void venderIngresso(Cliente cliente, Ingresso ingresso){
         try{
             // se os ingressos esgotaram, lança um erro
             if(this.ingressosVendidos.size() >= this.local.getCapacidade()){
@@ -176,9 +176,7 @@ public class Evento {
                 throw new EventoIndisponivelException("Evento Indisponível");
             }
             
-            Ingresso ingresso = new Ingresso(this, this.precoIngresso);
-            cliente.adicionarIngresso(ingresso);
-            clientes.add(cliente);
+            this.ingressosVendidos.add(ingresso);
 
         } catch (IngressosEsgotadosException e){
             System.out.println(e.getMessage());
