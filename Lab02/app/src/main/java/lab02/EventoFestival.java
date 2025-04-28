@@ -46,9 +46,9 @@ public class EventoFestival extends Evento {
      * Retorna uma string contendo a descri o do Festival, com seu nome, lineup, local e dura o
      * @return uma string com a descri o do Festival
      */
-    public String descricao() {
-        return "Festival: " + this.nome + " - Lineup: " + this.lineup + " - Local: " + this.local + " - Duração: " + this.duracao;
-    }
+    // public String descricao() {
+    //     return "Festival: " + this.nome + " - Lineup: " + this.lineup + " - Local: " + this.local + " - Duração: " + this.duracao;
+    // }
 
     /**
     * Retorna o preço do Ingresso do Evento

@@ -3,6 +3,8 @@
  */
 package lab02;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,25 @@ public class Cliente implements Comparable<Cliente>{
     }
 
     /**
+     * A função foi gerada com o auxílio de IA
+     * Compara duas strings de data para ver qual ocorreu antes
+     * Verifica se a data do Evento já passou em relação a data atual
+     * @return true se o evento em questão já ocorreu e false se ainda irá acontecer
+     */
+    boolean EventoPassou(String dataEvento, String dataAtual){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate d1 = LocalDate.parse(dataEvento, formatter);
+        LocalDate d2 = LocalDate.parse(dataAtual, formatter);
+
+        if (d1.isBefore(d2)) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    /**
      * Cancela os ingressos referente a algum evento específico
      * @param evento o evento dos ingressos a serem cancelados
      * @param dataAtual a data do cancelamento para verificar se é possível
@@ -99,7 +120,7 @@ public class Cliente implements Comparable<Cliente>{
         try{
 
             // se a data do evento já passou, lança uma exceção
-            if(evento.data.compareTo(dataAtual)<0){
+            if(EventoPassou(evento.getData(), dataAtual)){
                 throw new CancelamentoNaoPermitidoException("Não é possível cancelar um evento passado");
             }
 

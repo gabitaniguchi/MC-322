@@ -4,6 +4,7 @@
 
 package lab02;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImobiliariaDeEventos {
@@ -18,6 +19,7 @@ public class ImobiliariaDeEventos {
      */
     public ImobiliariaDeEventos(String nome) {
         this.nome = nome;
+        this.locais = new ArrayList<>();
     }
 
     /**

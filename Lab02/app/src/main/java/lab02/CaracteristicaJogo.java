@@ -11,6 +11,6 @@ public class CaracteristicaJogo extends CaracteristicaDeEvento {
 
     @Override
     public String descricao() {
-        return "Esporte com times: " + times;
+        return "Jogo com times: " + times;
     }
 }

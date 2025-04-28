@@ -4,9 +4,9 @@ import java.util.List;
 
 public class CaracteristicaFestival extends CaracteristicaDeEvento {
     private List<String> lineup;
-    private int duracao;
+    private String duracao;
 
-    public CaracteristicaFestival(List<String> lineup, int duracao) {
+    public CaracteristicaFestival(List<String> lineup, String duracao) {
         this.lineup = lineup;
         this.duracao = duracao;
     }

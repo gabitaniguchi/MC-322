@@ -71,52 +71,8 @@ public class Organizadora {
         return endereco;
     }
 
-    /**
-     * Método criarEvento para o Evento Festival
-     * @param nome o nome do Evento
-     * @param local o local do Evento
-     * @param precoIngresso o preço do Ingresso do Evento
-     * @param organizadora a organizadora do Evento
-     * @param data a data do Festival
-     * @param lineup a lista com os nomes dos artistas do Festival
-     * @param duracao a duração do Festival
-     * @return novo Evento Festival
-     */
-    public EventoFestival criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> lineup, int duracao) {
-        EventoFestival evento = new EventoFestival(nome, local, precoIngresso, organizadora, data, lineup, duracao);
+    public void adicionarEvento(Evento evento){
         eventos.add(evento);
-        return evento;
-    }
-
-    /**
-     * Método criarEvento para o Evento Jogo
-     * @param nome o nome do Evento
-     * @param local o local do Evento
-     * @param precoIngresso o preço do Ingresso do Evento
-     * @param organizadora a organizadora do Evento
-     * @param data a data do Evento
-     * @param times lista com os nomes dos times que se enfrentam no Evento
-     * @return novo Evento Jogo
-     */
-    public EventoJogo criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, List<String> times) {
-        EventoJogo evento = new EventoJogo(nome, local, precoIngresso, organizadora, data, times);
-        eventos.add(evento);
-        return evento;
-    }
-
-    /**
-     * Método criarEvento para o Evento Show
-     * @param nome o nome do Evento
-     * @param local o local do Evento
-     * @param precoIngresso o preço do Ingresso do Evento
-     * @param artista o artista do Evento
-     * @param organizadora a organizadora do Evento
-     * @return novo Evento Show
-     */
-    public EventoShow criarEvento(String nome, Local local, double precoIngresso, Organizadora organizadora, String data, String artista) {
-        EventoShow evento = new EventoShow(nome, local, precoIngresso, organizadora, data, artista);
-        eventos.add(evento);
-        return evento;
     }
 
     /**

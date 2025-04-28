@@ -36,6 +36,8 @@ public class Evento {
         this.cancelado = false;
         this.clientes = new ArrayList<>();
         this.caracteristicas = new ArrayList<>();
+
+        organizadora.adicionarEvento(this);
     }
 
     /**
@@ -104,7 +106,7 @@ public class Evento {
     }
 
     public void descricao(){
-        System.out.println("Evento: " + this.nome + " - Local: " + this.local + " - Data " + data);
+        System.out.println("Evento: " + this.nome + " - Local: " + this.local.getNome() + " - Data " + data);
         for (CaracteristicaDeEvento c : caracteristicas) {
             System.out.println("- " + c.descricao());
         }
@@ -175,7 +177,6 @@ public class Evento {
             }
             
             Ingresso ingresso = new Ingresso(this, this.precoIngresso);
-            this.ingressosVendidos.add(ingresso);
             cliente.adicionarIngresso(ingresso);
             clientes.add(cliente);
 

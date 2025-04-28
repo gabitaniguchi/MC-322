@@ -33,10 +33,10 @@ public class EventoJogo extends Evento {
      * Retorna uma string contendo a descri o do Evento, com seu nome, times, local e data
      * @return uma string com a descri o do Evento
      */
-    @Override
-    public String descricao() {
-        return "Esporte: " + this.nome + " - Times: " + this.times + " - Local: " + this.local;
-    }
+    //@Override
+    //public String descricao() {
+    //    return "Esporte: " + this.nome + " - Times: " + this.times + " - Local: " + this.local;
+    //}
     
     /**
     * Retorna o preço do Ingresso do Evento

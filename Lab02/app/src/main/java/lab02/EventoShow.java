@@ -23,13 +23,17 @@ public class EventoShow extends Evento {
 
     }
 
+    public String getArtista(){
+        return this.artista;
+    }
+
     /**
     * Retorna a descrição do Evento
     * @return a descrição do Evento
     */
-    public String getDescricao() {
-        return "Show: " + this.nome + " - Artista: " + this.artista  + " - Local: " + this.local + " - Data: " + this.data;
-    }
+    // public String getDescricao() {
+    //     return "Show: " + this.nome + " - Artista: " + this.artista  + " - Local: " + this.local + " - Data: " + this.data;
+    // }
     
     /**
     * Retorna o preço do Ingresso do Evento

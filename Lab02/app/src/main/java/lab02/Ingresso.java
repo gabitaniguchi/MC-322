@@ -22,6 +22,8 @@ public class Ingresso {
     public Ingresso(Evento evento, double preco) {
         this.evento = evento;
         this.preco = preco;
+
+        evento.ingressosVendidos.add(this);
     }
 
     /**
