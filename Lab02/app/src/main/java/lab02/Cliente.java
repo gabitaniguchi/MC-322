@@ -98,7 +98,7 @@ public class Cliente implements Comparable<Cliente>{
      * Verifica se a data do Evento já passou em relação a data atual
      * @return true se o evento em questão já ocorreu e false se ainda irá acontecer
      */
-    boolean EventoPassou(String dataEvento, String dataAtual){
+    boolean eventoPassou(String dataEvento, String dataAtual){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         LocalDate d1 = LocalDate.parse(dataEvento, formatter);
@@ -120,7 +120,7 @@ public class Cliente implements Comparable<Cliente>{
         try{
 
             // se a data do evento já passou, lança uma exceção
-            if(EventoPassou(evento.getData(), dataAtual)){
+            if(eventoPassou(evento.getData(), dataAtual)){
                 throw new CancelamentoNaoPermitidoException("Não é possível cancelar um evento passado");
             }
 

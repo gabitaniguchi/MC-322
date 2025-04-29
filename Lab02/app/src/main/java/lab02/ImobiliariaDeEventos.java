@@ -38,6 +38,11 @@ public class ImobiliariaDeEventos {
         this.locais.add(local);
     }
 
+    /**
+     * Dentre os locais da Imobiliária, retorna aquele com o nome em questão
+     * @param nome o nome do local a ser buscado
+     * @return o local procurado ou null caso não seja encontrado
+     */
     public Local buscarLocal(String nome){
         for (Local atual : locais){
             if(atual.getNome().equals(nome)) return atual;
@@ -46,6 +51,11 @@ public class ImobiliariaDeEventos {
         return null;
     }
 
+    /**
+     * Dentre os locais da Imobiliária, retorna aquele com a capacidade máxima em questão
+     * @param capacidadeMaxima a capacidade máxima utilizada como parâmetro
+     * @return o local procurado ou null caso não seja encontrado
+     */
     public Local buscarLocal(int capacidadeMaxima){
         for (Local atual : locais){
             if(atual.getCapacidade()==capacidadeMaxima) return atual;

@@ -36,8 +36,6 @@ public class Evento {
         this.cancelado = false;
         this.clientes = new ArrayList<>();
         this.caracteristicas = new ArrayList<>();
-
-        organizadora.adicionarEvento(this);
     }
 
     /**
@@ -164,7 +162,7 @@ public class Evento {
      * Atribui o ingresso como vendido ao cliente
      * @param cliente o cliente que comprou o ingresso
      */
-    public void venderIngresso(Cliente cliente, Ingresso ingresso){
+    public void venderIngresso(Cliente cliente){
         try{
             // se os ingressos esgotaram, lança um erro
             if(this.ingressosVendidos.size() >= this.local.getCapacidade()){
@@ -175,7 +173,8 @@ public class Evento {
             if(this.cancelado) {
                 throw new EventoIndisponivelException("Evento Indisponível");
             }
-            
+
+            Ingresso ingresso = new Ingresso(this, this.precoIngresso);
             this.ingressosVendidos.add(ingresso);
 
         } catch (IngressosEsgotadosException e){
@@ -194,8 +193,27 @@ public class Evento {
         return ingressosVendidos;
     }
 
+    /**
+     * Adiciona Características de Evento específicas, seguindo a noção de composição
+     * @param caracteristica a característica a ser adicionada
+     */
     public void adicionarCaracteristica(CaracteristicaDeEvento caracteristica){
         this.caracteristicas.add(caracteristica);
+    }
+
+    /**
+     * Retorna algum tipo de característica específica do evento para que seja possível acessar seu atributos
+     * @param caracateristica a característica a ser retornada
+     * @return a característica de evento específica, ou null se o evento não a possuir
+     */
+    public CaracteristicaDeEvento getCaracteristica(CaracteristicaDeEvento caracateristica){
+        for(CaracteristicaDeEvento caracteristicaEvento: caracteristicas){
+            if(caracteristicaEvento.equals(caracateristica)){
+                return caracteristicaEvento;
+            }
+        }
+
+        return null;
     }
 
 }

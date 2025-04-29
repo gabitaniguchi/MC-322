@@ -25,13 +25,14 @@ public class App {
         // ETAPA 1 - Criação de objetos utilizando as sobrecargas
         
         // Visto que fui realizada uma reestruturação da hierarquia de classes, agora com composição, não há mais razões para utilizar a sobrecarga de criarEvento
-        // Sendo assim, a demonstração desse passo será substituída pela demonstração da composição, justificada e detalhada no arquivo Evento.java
+        // Sendo assim, a demonstração desse passo será substituída pela demonstração da composição, justificada e detalhada no pdf enviado na submissão do lab
         // Agora, cada evento é instanciado como um objeto da classe Evento, e suas particularidades são modeladas por meio de objetos de CaracteristicaDeEvento.
         // Dessa forma, cada Evento possui uma ou mais características associadas a ele, seguindo a proposta da composição de "ter uma característica"
         System.out.println("ETAPA 0 - Demonstração da Composição:");
         Local localFestival = new Local("Autodromo de Interlagos", 300000);
         Organizadora organizadora = new Organizadora("Time For Fun (T4F)", 12345, "Faria Lima");
         Evento eventoFestival = new Evento("Lollapalooza Brasil 2025", localFestival, 200.0, organizadora,"27/04/2025");
+        organizadora.adicionarEvento(eventoFestival);
         CaracteristicaFestival caracteristicaFestival = new CaracteristicaFestival(List.of("Coldplay", "Justin Timberlake", "Sepultura", "Olivia Rodrigo"), "3 dias");
         eventoFestival.adicionarCaracteristica(caracteristicaFestival);
         eventoFestival.descricao();
@@ -39,6 +40,7 @@ public class App {
 
         Local localBar = new Local("Barão Geraldo, nº 33", 100);
         Evento eventoEmBar = new Evento("Noite de Samba ao Vivo", localBar, 50.0, organizadora, "20/08/2025");
+        organizadora.adicionarEvento(eventoEmBar);
         CaracteristicaBar caracteristicaBar = new CaracteristicaBar("Boteco do João", "20:00 h", "4 horas");
         CaracteristicaMusicaAoVivo caracteristicaMusicaAoVivoEmBar = new CaracteristicaMusicaAoVivo("Clara Nunes", "Samba");
         eventoEmBar.adicionarCaracteristica(caracteristicaBar);
@@ -48,6 +50,7 @@ public class App {
 
         Local localJogo = new Local("Estádio do Maracanã", 78000);
         Evento eventoJogo = new Evento("Final da Copa do Brasil", localJogo, 250.0, organizadora, "30/09/2025");
+        organizadora.adicionarEvento(eventoJogo);
         CaracteristicaJogo caracteristicaJogo = new CaracteristicaJogo(List.of("Brasil", "Alemanha"));
         eventoJogo.adicionarCaracteristica(caracteristicaJogo);
         eventoJogo.descricao();
@@ -55,6 +58,7 @@ public class App {
 
         Local localShow = new Local("Allianz Parque", 45000);
         Evento eventoShow = new Evento("Show Coldplay Live in São Paulo", localShow, 400.0, organizadora, "15/11/2025");
+        organizadora.adicionarEvento(eventoShow);
         CaracteristicaShow caracteristicaShow = new CaracteristicaShow("Coldplay");
         CaracteristicaMusicaAoVivo caracteristicaMusicaAoVivo = new CaracteristicaMusicaAoVivo("Coldplay", "Rock");
         eventoShow.adicionarCaracteristica(caracteristicaShow);
@@ -65,6 +69,7 @@ public class App {
         
         // Sobrecarga do método Adicionar Ingresso
         Evento evento = new Evento("Show Menos é mais", localShow, 400.0, organizadora, "30/10/2025");
+        organizadora.adicionarEvento(evento);
         Ingresso ingresso = new Ingresso(evento, 200.0);
         List<Ingresso> ingressos = new ArrayList<Ingresso>() {{
             add(new Ingresso(evento, 200.0));
@@ -75,10 +80,10 @@ public class App {
 
         Cliente cliente = new Cliente("Joao Pedro Silva");
         cliente.adicionarIngresso(ingresso);
-        evento.venderIngresso(cliente, ingresso);
+        evento.venderIngresso(cliente);
         cliente.adicionarIngresso(ingressos);
-        for(Ingresso ingressoVendido : ingressos){
-            evento.venderIngresso(cliente, ingressoVendido);
+        for(int i=1; i<=ingressos.size(); i++){
+            evento.venderIngresso(cliente);
         }
 
         // Imprime todos os ingressos do cliente
@@ -104,10 +109,11 @@ public class App {
         System.out.println("ETAPA 2 - Exceções para alocar local");
         
         Evento eventoLotado = new Evento("Show Lady Gaga", localFestival, 300.0, organizadora, "10/05/2025");
+        organizadora.adicionarEvento(eventoLotado);
 
         for(int i=1; i<=200; i++){
             Ingresso ingressoShow = new Ingresso(eventoLotado, 300.0);
-            eventoLotado.venderIngresso(cliente, ingressoShow);
+            eventoLotado.venderIngresso(cliente);
             cliente.adicionarIngresso(ingressoShow);
         }
 
@@ -129,10 +135,11 @@ public class App {
         Organizadora organizadora2 = new Organizadora("Campinas Eventos", 10102, "Barão Geraldo, Avenida Doutor Romeu Tortima");
 
         Evento eventoPequeno = new Evento("Clube do livro", localPraca, 15.0, organizadora2, "27/04/2025");
+        organizadora2.adicionarEvento(eventoPequeno);
         
         // lança uma erro de ingressos esgotados
         for(int i=1; i<=101; i++){
-            eventoPequeno.venderIngresso(cliente, new Ingresso(eventoPequeno, 15.0));
+            eventoPequeno.venderIngresso(cliente);
         }
         cliente.adicionarIngresso(eventoPequeno.getIngressosVendidos());
         System.out.println();
@@ -140,6 +147,7 @@ public class App {
         // // 4 - Cancelamento de ingressos com tratamento de IngressoNaoEncontradoException e CancelamentoNaoPermitidoException
         System.out.println("ETAPA 4 - Exceções para cancelar ingresso");
         Evento eventoMFP = new Evento("Maratona Feminina de Programação", localIC, 0, organizadora2, "06/07/2025");
+        organizadora2.adicionarEvento(eventoMFP);
         // lança erro de ingresso não encontrado
         cliente.cancelarIngresso(eventoMFP, "27/04/2025");
         // lança erro de cancelamento não permitido
@@ -151,7 +159,9 @@ public class App {
         // 6 - Utilização dos filtros da subseção 3.4
 
         Evento eventoProva = new Evento("Prova de MC322", localIC, 0, organizadora2, "29/05/2025");
+        organizadora2.adicionarEvento(eventoProva);
         Evento eventoAvaliacaoCurso = new Evento("Avaliação de Curso 1º semestre 2025", localIC, 0, organizadora2, "10/06/2025");
+        organizadora2.adicionarEvento(eventoAvaliacaoCurso);
 
         System.out.println("ETAPA 6 - Demonstração dos filtros de evento");
         

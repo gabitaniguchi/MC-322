@@ -103,12 +103,18 @@ public class Local{
         }
     }
 
+    /**
+     * Aloca um novo local para algum evento
+     * @param evento o evento que recebe um novo local
+     */
     public void alocarParaEvento(Evento evento){
         try{
+            // caso a capacidade do local não atenda o evento, lança exceção de Capacidade Insuficiente  
             if(this.capacidadeMaxima < evento.getIngressosVendidos().size()){
                 throw new CapacidadeInsuficienteException("Capacidade Insuficiente");
             }
 
+            // caso o local esteja indisponível, lança exceção de Local Indisponível
             if(!this.disponivel){
                 throw new LocalIndisponivelException("Local Indisponivel");
             }
