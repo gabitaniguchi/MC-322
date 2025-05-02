@@ -22,7 +22,7 @@ public class App {
 
         // Desenvolvimento de Cenário de Uso
 
-        // ETAPA 1 - Criação de objetos utilizando as sobrecargas
+        // ETAPA 0 - Demonstração da composição
         
         // Visto que fui realizada uma reestruturação da hierarquia de classes, agora com composição, não há mais razões para utilizar a sobrecarga de criarEvento
         // Sendo assim, a demonstração desse passo será substituída pela demonstração da composição, justificada e detalhada no pdf enviado na submissão do lab
@@ -55,7 +55,7 @@ public class App {
         eventoJogo.adicionarCaracteristica(caracteristicaJogo);
         eventoJogo.descricao();
         System.out.println();
-
+        
         Local localShow = new Local("Allianz Parque", 45000);
         Evento eventoShow = new Evento("Show Coldplay Live in São Paulo", localShow, 400.0, organizadora, "15/11/2025");
         organizadora.adicionarEvento(eventoShow);
@@ -67,6 +67,7 @@ public class App {
         System.out.println();
 
         
+        // ETAPA 1 - Criação de objetos utilizando as sobrecargas
         // Sobrecarga do método Adicionar Ingresso
         Evento evento = new Evento("Show Menos é mais", localShow, 400.0, organizadora, "30/10/2025");
         organizadora.adicionarEvento(evento);

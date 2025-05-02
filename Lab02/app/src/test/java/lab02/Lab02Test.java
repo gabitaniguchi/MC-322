@@ -13,6 +13,7 @@ public class Lab02Test {
     /**
      * Teste referente à interface Notificável
      * Verifica se as notificações, ou mensagens impressas correspondem ao esperado
+     * O uso do sistema para captar as saídas geradas foi feito com o auxílio de IA
      */
     @Test 
     public void verificarNotificavel(){
