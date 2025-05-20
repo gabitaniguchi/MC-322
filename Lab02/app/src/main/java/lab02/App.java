@@ -242,6 +242,24 @@ public class App {
             System.out.println(" - " +eventoFiltro.getNome() + " ");
         }
         System.out.println("\n");
+
+        // Junção dos filtros por Data e por Organizadora
+        System.out.println("FILTRO POR DATA E POR ORGANIZADORA:");
+        System.out.println("Eventos com data 27/04/2025 e Organizadora 1:");
+
+        List<Evento> eventosDataAndOrganizadora1 = organizadora.buscarEventos(new AndFilter(new EventoPorOrganizadorFilter(organizadora), new EventoPorDataFilter("27/04/2025")));
+        List<Evento> eventosDataAndOrganizadora2 = organizadora2.buscarEventos(new AndFilter(new EventoPorOrganizadorFilter(organizadora), new EventoPorDataFilter("27/04/2025")));
+
+        System.out.println(" Organizadora 1: ");
+        for(Evento eventoFiltro : eventosDataAndOrganizadora1){
+            System.out.println(" - " + eventoFiltro.getNome());
+        }
+        System.out.println("\n Organizadora 2:");
+        for(Evento eventoFiltro : eventosDataAndOrganizadora2){
+            System.out.println(" - " +eventoFiltro.getNome() + " ");
+        }
+        System.out.println("\n");
+
         
         // 7 - Demonstração da classe de notificação email
 

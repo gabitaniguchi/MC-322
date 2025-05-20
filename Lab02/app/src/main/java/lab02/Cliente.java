@@ -13,15 +13,17 @@ public class Cliente implements Comparable<Cliente>{
     private String nome;
     private List<Ingresso> ingressos;
     private List<Notificavel> meiosDeNotificacao;
+    private double saldo;
 
     /**
      * Construtor da classe cliente
      * @param nome o nome do cliente
      */
-    public Cliente(String nome){
+    public Cliente(String nome, int saldo){
         this.nome = nome;
         this.ingressos = new ArrayList<>();
         this.meiosDeNotificacao = new ArrayList<>();
+        this.saldo = saldo;
     }
 
     /**
@@ -38,6 +40,22 @@ public class Cliente implements Comparable<Cliente>{
      */
     public void setNome(String nome){
         this.nome = nome;
+    }
+
+    /**
+     * Retorna o saldo do cliente
+     * @return o saldo do cliente
+     */
+    public double getSaldo(){
+        return saldo;
+    }
+
+    /**
+     * Altera o saldo do CLiente
+     * @param saldo o novo saldo do cliente
+     */
+    public void creditar(double valor){
+        this.saldo += valor;
     }
 
     /**
@@ -88,6 +106,24 @@ public class Cliente implements Comparable<Cliente>{
      */
     public class CancelamentoNaoPermitidoException extends Exception{
         public CancelamentoNaoPermitidoException(String mensagem) {
+            super(mensagem);
+        }
+    }
+
+    public class IngressoNaoPertenceAoClienteException extends Exception{
+        public IngressoNaoPertenceAoClienteException(String mensagem){
+            super(mensagem);
+        }
+    }
+
+    public class OfertaNaoEncontradaException extends Exception{
+        public OfertaNaoEncontradaException(String mensagem){
+            super(mensagem);
+        }
+    }
+
+    public class SaldoInsuficienteException extends Exception{
+        public SaldoInsuficienteException(String mensagem){
             super(mensagem);
         }
     }
@@ -192,6 +228,40 @@ public class Cliente implements Comparable<Cliente>{
         for(Notificavel  meio: meiosDeNotificacao){
             meio.notificar(mensagem);
         }
+    }
+
+    public void oferecerIngressoParaVenda(Ingresso ingresso, double precoPedido, Marketplace marketplace){
+        try{
+            if(!this.getIngressos().contains(ingresso)){
+                throw new IngressoNaoPertenceAoClienteException("Ingresso não pertence ao cliente");
+            }
+            
+            marketplace.receberOferta(ingresso, precoPedido, this);
+            this.removerIngresso(ingresso);
+
+        }catch(IngressoNaoPertenceAoClienteException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void comprarIngressoNoMarketplace(OfertaIngresso oferta, Marketplace marketplace){
+        try{
+            // se a data do evento já passou, lança uma exceção
+            if(!marketplace.listarOrfertas().contains(oferta)){
+                throw new OfertaNaoEncontradaException("Oferta não encontrada");
+            }
+
+            if(this.getSaldo() < oferta.getPrecoPedido()){
+                throw new SaldoInsuficienteException(("Saldo insuficiente"));
+            }
+            marketplace.processarCompra(this, oferta);
+
+        }catch(OfertaNaoEncontradaException e){
+            System.out.println(e.getMessage());
+        } catch(SaldoInsuficienteException e){
+            System.out.println(e.getMessage());
+        }
+        
     }
 
 }
