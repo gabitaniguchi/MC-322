@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+    fx:controller="lab02.ui.MainWindowController"
+    prefWidth="800" prefHeight="600">
+    <center>
+        <Button text="Clique aqui" onAction="#listarEventos"/>
+    </center>
+</BorderPane>

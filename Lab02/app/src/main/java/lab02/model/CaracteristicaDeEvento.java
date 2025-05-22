@@ -1,4 +1,4 @@
-package lab02;
+package lab02.model;
 
 public abstract class CaracteristicaDeEvento {
     public abstract String descricao();

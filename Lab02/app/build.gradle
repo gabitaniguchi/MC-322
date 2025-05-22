@@ -13,8 +13,8 @@ plugins {
 }
 
 javafx {
-    version = ’20 ’
-    modules = [ ’javafx . controls’, ’javafx . fxml’ ]
+    version = '20'
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
 repositories {
@@ -41,7 +41,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'lab02.App'
+    mainClass = 'lab02.ui.MainApp'
 }
 
 tasks.named('test') {

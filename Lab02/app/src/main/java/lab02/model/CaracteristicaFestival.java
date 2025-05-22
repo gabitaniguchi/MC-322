@@ -1,5 +1,4 @@
-package lab02;
-
+package lab02.model;
 import java.util.List;
 
 public class CaracteristicaFestival extends CaracteristicaDeEvento {

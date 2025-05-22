@@ -4,7 +4,7 @@
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
 
-package lab02;
+ package lab02.model;
 
 /**
  * Contém a estrutura de implementação de um Ingresso.

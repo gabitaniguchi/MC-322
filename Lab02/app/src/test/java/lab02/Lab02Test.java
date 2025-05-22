@@ -1,4 +1,4 @@
-package lab02;
+package java.lab02.model;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class Lab02Test {
      */
     @Test 
     public void verificarNotificavel(){
-        Cliente cliente = new Cliente("Gabriela Taniguchi");
+        Cliente cliente = new Cliente("Gabriela Taniguchi",0);
         Email email = new Email("g281773@dac.unicamp.br");
         SMS sms = new SMS(99887766);
         cliente.adicionarMeioDeNotificacao(email);
@@ -41,8 +41,8 @@ public class Lab02Test {
      */
     @Test
     public void compararClientes(){
-        Cliente cliente1 = new Cliente("Gabriela Taniguchi");
-        Cliente cliente2 = new Cliente("Diana Andrade");
+        Cliente cliente1 = new Cliente("Gabriela Taniguchi",0);
+        Cliente cliente2 = new Cliente("Diana Andrade",0);
 
         Local local = new Local("Campinas Hall", 5000);
         Organizadora organizadora = new Organizadora("SP eventos", 123456, "Barão Geraldo");

@@ -1,5 +1,4 @@
-package lab02;
-
+package lab02.model;
 public class Email implements Notificavel {
 
     private String enderecoDeEmail;

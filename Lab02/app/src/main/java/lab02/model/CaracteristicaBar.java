@@ -1,4 +1,4 @@
-package lab02;
+package lab02.model;
 
 public class CaracteristicaBar extends CaracteristicaDeEvento {
     private String nomeDoBar;

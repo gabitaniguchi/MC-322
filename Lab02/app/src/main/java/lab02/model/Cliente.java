@@ -1,7 +1,7 @@
 /*
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
-package lab02;
+package lab02.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

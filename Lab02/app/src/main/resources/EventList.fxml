@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="lab02.ui.EventListController"
+      spacing="10" alignment="TOP_CENTER"
+      prefWidth="400" prefHeight="400">
+
+    <ListView fx:id="eventoListView" prefHeight="200" prefWidth="380"/>
+
+    <Label text="Detalhes do Evento:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="nomeLabel" text="Nome:"/>
+    <Label fx:id="dataLabel" text="Data:"/>
+    <Label fx:id="localLabel" text="Local:"/>
+    <Label fx:id="precoLabel" text="Preço:"/>
+
+</VBox>

@@ -2,7 +2,7 @@
  * Material usado na disciplina MC322 - Programação orientada a objetos.
  */
 
-package lab02;
+package lab02.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +79,7 @@ public class App {
             add(new Ingresso(evento, 200.0));
         }};
 
-        Cliente cliente = new Cliente("Joao Pedro Silva");
+        Cliente cliente = new Cliente("Joao Pedro Silva", 0);
         cliente.adicionarIngresso(ingresso);
         evento.venderIngresso(cliente);
         cliente.adicionarIngresso(ingressos);
@@ -277,8 +277,8 @@ public class App {
         
         // 8 - Comparação entre Clientes com os dois cenários de possuirem o ingresso para o mesmo evento
         System.out.println("ETAPA 8 - Comparar dois clientes");
-        Cliente cliente1 = new Cliente("Ana Clara");
-        Cliente cliente2 = new Cliente("Ana Lucia");
+        Cliente cliente1 = new Cliente("Ana Clara",0);
+        Cliente cliente2 = new Cliente("Ana Lucia",0);
         Ingresso ingressoShow = new Ingresso(eventoLotado, 300);
         Ingresso ingressoMaratona = new Ingresso(eventoMFP, 0);
 
