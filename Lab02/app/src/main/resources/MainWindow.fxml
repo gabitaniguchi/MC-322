@@ -3,10 +3,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" 
-    fx:controller="lab02.ui.MainWindowController"
-    prefWidth="800" prefHeight="600">
-    <center>
-        <Button text="Clique aqui" onAction="#listarEventos"/>
-    </center>
-</BorderPane>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="lab02.ui.MainWindowController"
+      alignment="CENTER" spacing="15" prefWidth="800" prefHeight="600">
+
+    <Button text="Visualizar Eventos" styleClass = "botao-personalizado" onAction="#VisualizarEventos"/>
+    <Button text="Meus Ingressos" styleClass = "botao-personalizado" onAction="#Meusingressos"/>
+    <Button text="Comprar Ingressos"  styleClass = "botao-personalizado" onAction="#ComprarIngressos"/>
+    <Button text="Vender Ingressos"  styleClass = "botao-personalizado" onAction="#VenderIngressos"/>
+
+</VBox>

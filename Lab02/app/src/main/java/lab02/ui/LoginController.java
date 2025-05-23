@@ -24,15 +24,14 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Aqui você pode validar o usuário/senha, por enquanto vamos aceitar qualquer coisa não vazia
         if (username.isEmpty() || password.isEmpty()) {
             messageLabel.setText("Preencha usuário e senha");
             return;
         }
 
-        // Login "sucesso" - carregar a próxima cena
+        // Carregar a próxima cena
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EventList.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
             Scene welcomeScene = new Scene(loader.load(), 800, 600);
 
             // Pega a janela atual para trocar a cena

@@ -11,6 +11,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(getClass().getResource("/BotaoPersonalizado.css").toExternalForm());
         primaryStage.setTitle("Venda e Compra de Ingressos");
         primaryStage.setScene(scene);
         primaryStage.show();
