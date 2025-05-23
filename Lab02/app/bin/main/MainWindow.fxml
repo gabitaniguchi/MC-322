@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="lab02.ui.MainWindowController"
+      alignment="CENTER" spacing="15" prefWidth="800" prefHeight="600">
+      <Label fx:id="nomeClienteLabel" layoutX="20" layoutY="20" text="Bem-vindo!" />
+
+    <Button text="Visualizar Eventos" styleClass = "botao-personalizado" onAction="#handleVisualizarEventos"/>
+    <Button text="Meus Ingressos" styleClass = "botao-personalizado" onAction="#handleMeusIngressos"/>
+    <Button text="Sair"  styleClass = "botao-personalizado" onAction="#handleSair"/>
+</VBox>

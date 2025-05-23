@@ -75,8 +75,16 @@ public class MeusIngressosController {
     }
 
     @FXML
-    private void handleVenderIngressos(ActionEvent event) {
-        System.out.println("Vender ingressos clicado!");
+    private void handleVenderIngresso(ActionEvent event) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/VenderIngresso.fxml"));
+            Scene newScene = new Scene(loader.load(), 800, 600);
+    
+            Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+        }catch (IOException ex) {
+            ex.printStackTrace(); // Para depuração
+        }
     }
 
 

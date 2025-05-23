@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="lab02.ui.MeusIngressosController"
+      spacing="10" alignment="TOP_CENTER" prefWidth="600" prefHeight="400">
+
+    <Label text="Meus Ingressos" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <ListView fx:id="ingressosListView" prefHeight="200" prefWidth="550"/>
+
+    <Label text="Detalhes do Ingresso:" style="-fx-font-weight: bold;"/>
+    <Label fx:id="eventoLabel" text="Evento:"/>
+    <Label fx:id="dataLabel" text="Data:"/>
+    <Label fx:id="localLabel" text="Local:"/>
+    <Label fx:id="precoLabel" text="Preço:"/>
+
+    <Button text="Vender Ingresso" onAction="#handleVenderIngresso"/>
+    <Button text="Voltar" onAction="#handleVoltar"/>
+</VBox>
