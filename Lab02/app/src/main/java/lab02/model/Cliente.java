@@ -19,7 +19,7 @@ public class Cliente implements Comparable<Cliente>{
      * Construtor da classe cliente
      * @param nome o nome do cliente
      */
-    public Cliente(String nome, int saldo){
+    public Cliente(String nome, double saldo){
         this.nome = nome;
         this.ingressos = new ArrayList<>();
         this.meiosDeNotificacao = new ArrayList<>();

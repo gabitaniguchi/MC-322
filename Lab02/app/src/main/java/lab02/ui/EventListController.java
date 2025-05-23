@@ -1,13 +1,19 @@
 package lab02.ui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
+
 import javafx.beans.value.ObservableValue;
 import lab02.model.Evento;
-import lab02.model.Local;
-import lab02.model.Organizadora;
+import lab02.data.EventoRepository;;
 
 public class EventListController {
 
@@ -30,7 +36,7 @@ public class EventListController {
 
     @FXML
     public void initialize() {
-        carregarEventos();
+        eventos = EventoRepository.definirEventos();
         eventoListView.setItems(eventos);
         
         eventoListView.setCellFactory(listView -> new ListCell<>() {
@@ -41,6 +47,7 @@ public class EventListController {
                     setText(null);
                 } else {
                     setText(evento.getNome());
+                    setStyle("-fx-alignment: center;");
                 }
             }
         });
@@ -48,16 +55,6 @@ public class EventListController {
         eventoListView.getSelectionModel().selectedItemProperty().addListener(
             (ObservableValue<? extends Evento> obs, Evento oldVal, Evento newVal) -> mostrarDetalhes(newVal)
         );
-    }
-
-    private void carregarEventos() {
-        Local local1 = new Local("Teatro Municipal", 100);
-        Local local2 = new Local("Arena Cultural", 300);
-        Organizadora org = new Organizadora("Time For Fun (T4F)", 12345, "Faria Lima");
-
-        eventos.add(new Evento("Concerto Clássico", local1, 50.0, org, "2025-06-01"));
-        eventos.add(new Evento("Festival de Jazz", local2, 70.0, org, "2025-07-15"));
-        eventos.add(new Evento("Peça Teatral", local1, 40.0, org, "2025-08-10"));
     }
 
     private void mostrarDetalhes(Evento evento) {
@@ -73,5 +70,27 @@ public class EventListController {
             precoLabel.setText("Preço:");
         }
     }
+
+    @FXML
+    private void handleComprarIngresso(ActionEvent event) {
+        System.out.println("E");
+    }
+
+
+    @FXML
+    private void handleVoltar(ActionEvent event) {
+        try {
+            // Carrega a nova cena do arquivo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
+            Scene newScene = new Scene(loader.load(), 800, 600);
+
+            // Pega a janela atual a partir do botão que disparou o evento
+            Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Para depuração
+        }
+    }
+
     
 }
