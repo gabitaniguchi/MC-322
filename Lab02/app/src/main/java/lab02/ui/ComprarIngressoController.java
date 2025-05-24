@@ -7,12 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lab02.model.Cliente;
 import lab02.model.Evento;
-import lab02.model.Ingresso;
-
-public class VenderIngressoController {
+public class ComprarIngressoController {
 
     @FXML
     private Label saldoLabel;
@@ -26,11 +25,19 @@ public class VenderIngressoController {
     @FXML
     private Label localLabel;
 
+    @FXML
+    private Label precoLabel;
 
-    private Ingresso ingresso;
+    @FXML
+    private TextField precoIngresso;
 
-    public void setIngresso(Ingresso ingresso){
-        this.ingresso = ingresso;
+    @FXML
+    private Label messageLabel;
+
+    private Evento evento;
+
+    public void setEvento(Evento evento){
+        this.evento = evento;
         mostrarDetalhes();
     }
 
@@ -41,15 +48,20 @@ public class VenderIngressoController {
     }
 
     private void mostrarDetalhes() {
-        Evento evento = ingresso.getEvento();
         eventoLabel.setText("Evento: " + evento.getNome());
         dataLabel.setText("Data: " + evento.getData());
         localLabel.setText("Local: " + evento.getLocal().getNome());
-    
+        precoLabel.setText("Preco: " + evento.getPrecoIngresso());
     }
 
     @FXML
-    private void handleConfirmarVenda(ActionEvent event) {
+    private void handleConfirmarCompra(ActionEvent event) {
+        String pagamento = precoIngresso.getText();
+        String valorIngresso = Double.toString(evento.getPrecoIngresso());
+        if(!pagamento.equals(valorIngresso)){
+            messageLabel.setText("Insira o valor correto");
+            return;
+        }
         // try{
         //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ConfirmarVenda.fxml"));
         //     Scene newScene = new Scene(loader.load(), 800, 600);
@@ -59,12 +71,13 @@ public class VenderIngressoController {
         // }catch (IOException ex) {
         //     ex.printStackTrace(); // Para depuração
         // }
+        System.out.println("sim");
     }
 
     @FXML
     private void handleVoltar(ActionEvent event) {
         try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MeusIngressos.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
         Scene newScene = new Scene(loader.load(), 800, 600);
 
         Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();

@@ -32,6 +32,9 @@ public class MeusIngressosController {
     @FXML
     private Label precoLabel;
 
+    @FXML
+    private Label messageLabel;
+
     private ObservableList<Ingresso> ingressos = FXCollections.observableArrayList();
 
     @FXML
@@ -77,9 +80,18 @@ public class MeusIngressosController {
     @FXML
     private void handleVenderIngresso(ActionEvent event) {
         try{
+            Ingresso ingressoSelecionado = ingressosListView.getSelectionModel().getSelectedItem();
+            if(ingressoSelecionado==null){
+                messageLabel.setText("Selecione o ingresso");
+                return;
+            }
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/VenderIngresso.fxml"));
             Scene newScene = new Scene(loader.load(), 800, 600);
-    
+
+            VenderIngressoController controller = loader.getController();
+            controller.setIngresso(ingressoSelecionado);
+            
             Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             stage.setScene(newScene);
         }catch (IOException ex) {

@@ -19,6 +19,7 @@
     <Label fx:id="precoLabel" text="Preço:"/>
 
     <Button text="Comprar Ingresso" onAction="#handleComprarIngresso" maxWidth="200"/>
+    <Label fx:id="messageLabel" textFill="red"/>
     <Button text="Voltar" onAction="#handleVoltar" maxWidth="200"/>
 
 

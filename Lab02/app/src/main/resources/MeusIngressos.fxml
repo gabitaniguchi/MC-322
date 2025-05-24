@@ -6,7 +6,9 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="lab02.ui.MeusIngressosController"
-      spacing="10" alignment="TOP_CENTER" prefWidth="600" prefHeight="400">
+      spacing="10" alignment="TOP_CENTER" 
+      prefWidth="400" prefHeight="400"
+      style="-fx-padding: 80 10 10 10;">
 
     <Label text="Meus Ingressos" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
@@ -19,5 +21,6 @@
     <Label fx:id="precoLabel" text="Preço:"/>
 
     <Button text="Vender Ingresso" onAction="#handleVenderIngresso"/>
+    <Label fx:id="messageLabel" textFill="red"/>
     <Button text="Voltar" onAction="#handleVoltar"/>
 </VBox>

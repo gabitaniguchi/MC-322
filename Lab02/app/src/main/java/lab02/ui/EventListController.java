@@ -32,6 +32,9 @@ public class EventListController {
     @FXML
     private Label precoLabel;
 
+    @FXML
+    private Label messageLabel;
+
     private ObservableList<Evento> eventos = FXCollections.observableArrayList();
 
     @FXML
@@ -73,7 +76,24 @@ public class EventListController {
 
     @FXML
     private void handleComprarIngresso(ActionEvent event) {
-        System.out.println("E");
+        try {
+            Evento eventoSelecionado = eventoListView.getSelectionModel().getSelectedItem();
+            if(eventoSelecionado==null){
+                messageLabel.setText("Selecione o evento");
+                return;
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ComprarIngresso.fxml"));
+            Scene newScene = new Scene(loader.load(), 800, 600);
+
+            ComprarIngressoController controller = loader.getController();
+            controller.setEvento(eventoSelecionado);
+
+            // Pega a janela atual a partir do botão que disparou o evento
+            Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Para depuração
+        }
     }
 
 
