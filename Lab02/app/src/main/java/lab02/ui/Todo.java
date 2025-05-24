@@ -8,7 +8,7 @@ public class Todo {
      * tratar demais exeções
      * criar Ofertas do Marktplace
      * ver se so preciso pegar comissão das ofertas do Marketplace
-     * 
+     * colocar ingresso a venda separado (não posso vender 2 vezes)
      * 
      * 
      */

@@ -6,10 +6,20 @@ public class Marketplace {
 
     private List<OfertaIngresso> ingressossAVenda;
     private double comissaoPorcentagem;
+    private double lucro;
 
     public Marketplace(double comissaoPorcentagem){
         this.ingressossAVenda = new ArrayList<>();
         this.comissaoPorcentagem = comissaoPorcentagem;
+        this.lucro = 0;
+    }
+
+    public void adicionarLucro(double valor){
+        this.lucro += valor;
+    }
+
+    public double getLucro(){
+        return lucro;
     }
 
     /**
@@ -32,6 +42,7 @@ public class Marketplace {
 
         double comissao = (comissaoPorcentagem/100)*oferta.getPrecoPedido();
         double valorRecebidoVendedor = oferta.getPrecoPedido() - comissao;
+        adicionarLucro(comissao);
     
         oferta.getVendedor().creditar(valorRecebidoVendedor);
         comprador.creditar(-oferta.getPrecoPedido());

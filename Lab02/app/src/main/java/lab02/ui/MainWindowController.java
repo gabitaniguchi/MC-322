@@ -55,6 +55,16 @@ public class MainWindowController {
     }
 
     @FXML
+    private void handleOfertasMarketplace(ActionEvent event) {
+      
+    }
+
+    @FXML
+    private void handleLucroMarketplace(ActionEvent event) {
+        
+    }
+
+    @FXML
     private void handleSair(ActionEvent event) {
         try {
             // desloga o usuário

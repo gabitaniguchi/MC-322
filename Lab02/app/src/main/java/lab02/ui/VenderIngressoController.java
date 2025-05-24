@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lab02.data.MarketplaceRepository;
 import lab02.model.Cliente;
 import lab02.model.Evento;
 import lab02.model.Ingresso;
@@ -25,6 +27,9 @@ public class VenderIngressoController {
 
     @FXML
     private Label localLabel;
+
+    @FXML
+    private TextField precoVenda;
 
 
     private Ingresso ingresso;
@@ -50,15 +55,18 @@ public class VenderIngressoController {
 
     @FXML
     private void handleConfirmarVenda(ActionEvent event) {
-        // try{
-        //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ConfirmarVenda.fxml"));
-        //     Scene newScene = new Scene(loader.load(), 800, 600);
+        double precoPedido = Double.parseDouble(precoVenda.getText());
+        Cliente vendedor = Sessao.getClienteLogado();
+        MarketplaceRepository.getMarketplace().receberOferta(ingresso, precoPedido , vendedor);
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
+            Scene newScene = new Scene(loader.load(), 800, 600);
     
-        //     Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
-        //     stage.setScene(newScene);
-        // }catch (IOException ex) {
-        //     ex.printStackTrace(); // Para depuração
-        // }
+            Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+        }catch (IOException ex) {
+            ex.printStackTrace(); // Para depuração
+        }
     }
 
     @FXML
