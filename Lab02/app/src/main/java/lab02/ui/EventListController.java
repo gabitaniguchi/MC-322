@@ -13,6 +13,8 @@ import java.io.IOException;
 
 import javafx.beans.value.ObservableValue;
 import lab02.model.Evento;
+import lab02.model.Ingresso;
+import lab02.model.OfertaIngresso;
 import lab02.data.EventoRepository;;
 
 public class EventListController {
@@ -86,7 +88,8 @@ public class EventListController {
             Scene newScene = new Scene(loader.load(), 800, 600);
 
             ComprarIngressoController controller = loader.getController();
-            controller.setEvento(eventoSelecionado);
+            OfertaIngresso oferta = new OfertaIngresso(new Ingresso(eventoSelecionado, eventoSelecionado.getPrecoIngresso()), eventoSelecionado.getPrecoIngresso(),null, true);
+            controller.setOferta(oferta);
 
             // Pega a janela atual a partir do botão que disparou o evento
             Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();

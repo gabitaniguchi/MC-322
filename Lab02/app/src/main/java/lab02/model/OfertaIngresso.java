@@ -5,11 +5,17 @@ public class OfertaIngresso {
     private Ingresso ingresso;
     private double precoPedido;
     private Cliente vendedor;
+    private boolean oficial;
 
-    public OfertaIngresso(Ingresso ingresso, double precoPedido, Cliente vendedor) {
+    public OfertaIngresso(Ingresso ingresso, double precoPedido, Cliente vendedor, boolean oficial) {
         this.ingresso = ingresso;
         this.precoPedido = precoPedido;
         this.vendedor = vendedor;
+        this.oficial = oficial;
+    }
+
+    public boolean getOficial(){
+        return oficial;
     }
 
     public Ingresso getIngresso() {

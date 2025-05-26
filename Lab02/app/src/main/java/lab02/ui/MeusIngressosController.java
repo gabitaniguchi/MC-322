@@ -30,9 +30,6 @@ public class MeusIngressosController {
     private Label localLabel;
 
     @FXML
-    private Label precoLabel;
-
-    @FXML
     private Label messageLabel;
 
     private ObservableList<Ingresso> ingressos = FXCollections.observableArrayList();
@@ -68,12 +65,10 @@ public class MeusIngressosController {
             eventoLabel.setText("Evento: " + evento.getNome());
             dataLabel.setText("Data: " + evento.getData());
             localLabel.setText("Local: " + evento.getLocal().getNome());
-            precoLabel.setText("Preço: R$ " + ingresso.getPreco());
         } else {
             eventoLabel.setText("Evento:");
             dataLabel.setText("Data:");
             localLabel.setText("Local: ");
-            precoLabel.setText("Preço:");
         }
     }
 
@@ -83,6 +78,11 @@ public class MeusIngressosController {
             Ingresso ingressoSelecionado = ingressosListView.getSelectionModel().getSelectedItem();
             if(ingressoSelecionado==null){
                 messageLabel.setText("Selecione o ingresso");
+                return;
+            }
+
+            if(ingressoSelecionado.getVendendo()){
+                messageLabel.setText("Ingresso já está à venda");
                 return;
             }
             

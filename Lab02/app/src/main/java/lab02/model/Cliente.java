@@ -236,7 +236,7 @@ public class Cliente implements Comparable<Cliente>{
                 throw new IngressoNaoPertenceAoClienteException("Ingresso não pertence ao cliente");
             }
             
-            marketplace.receberOferta(ingresso, precoPedido, this);
+            marketplace.receberOferta(ingresso, precoPedido, this, true);
             this.removerIngresso(ingresso);
 
         }catch(IngressoNaoPertenceAoClienteException e){
@@ -246,8 +246,7 @@ public class Cliente implements Comparable<Cliente>{
 
     public void comprarIngressoNoMarketplace(OfertaIngresso oferta, Marketplace marketplace){
         try{
-            // se a data do evento já passou, lança uma exceção
-            if(!marketplace.listarOrfertas().contains(oferta)){
+            if(!marketplace.listarOfertas().contains(oferta)){
                 throw new OfertaNaoEncontradaException("Oferta não encontrada");
             }
 
@@ -262,6 +261,18 @@ public class Cliente implements Comparable<Cliente>{
             System.out.println(e.getMessage());
         }
         
+    }
+
+    public void comprarIngressoOficial(OfertaIngresso oferta){
+        try{
+            if(this.getSaldo() < oferta.getIngresso().getPreco()){
+                throw new SaldoInsuficienteException("Saldo Insuficiente");
+            }
+            this.adicionarIngresso(oferta.getIngresso());
+            this.creditar(-oferta.getIngresso().getPreco());
+        }catch(SaldoInsuficienteException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }

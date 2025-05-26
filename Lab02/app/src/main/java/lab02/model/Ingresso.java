@@ -13,6 +13,7 @@ public class Ingresso {
 
     private Evento evento;
     private double preco;
+    private boolean vendendo;
 
     /**
      * Construtor da classe Ingresso
@@ -22,6 +23,15 @@ public class Ingresso {
     public Ingresso(Evento evento, double preco) {
         this.evento = evento;
         this.preco = preco;
+        this.vendendo = false;
+    }
+
+    public void setVendendo(boolean vendendo){
+        this.vendendo = vendendo;
+    }
+
+    public boolean getVendendo(){
+        return this.vendendo;
     }
 
     /**

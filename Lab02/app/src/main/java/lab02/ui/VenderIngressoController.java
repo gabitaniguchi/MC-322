@@ -57,7 +57,9 @@ public class VenderIngressoController {
     private void handleConfirmarVenda(ActionEvent event) {
         double precoPedido = Double.parseDouble(precoVenda.getText());
         Cliente vendedor = Sessao.getClienteLogado();
-        MarketplaceRepository.getMarketplace().receberOferta(ingresso, precoPedido , vendedor);
+        ingresso.setVendendo(true);
+        
+        MarketplaceRepository.getMarketplace().receberOferta(ingresso, precoPedido , vendedor, false);
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));
             Scene newScene = new Scene(loader.load(), 800, 600);

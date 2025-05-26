@@ -26,12 +26,12 @@ public class Marketplace {
      * Retorna a lista de ingressos/ofertas disponiveis no marketplace
      * @return
      */
-    public List<OfertaIngresso> listarOrfertas(){
+    public List<OfertaIngresso> listarOfertas(){
         return ingressossAVenda;
     }
 
-    public void receberOferta(Ingresso ingresso, double precoPedido, Cliente vendedor){
-        ingressossAVenda.add(new OfertaIngresso(ingresso, precoPedido, vendedor));
+    public void receberOferta(Ingresso ingresso, double precoPedido, Cliente vendedor, boolean oficial){
+        ingressossAVenda.add(new OfertaIngresso(ingresso, precoPedido, vendedor, oficial));
     }
 
     public void processarCompra(Cliente comprador, OfertaIngresso oferta){

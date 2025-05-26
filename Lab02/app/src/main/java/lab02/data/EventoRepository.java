@@ -24,29 +24,22 @@ public class EventoRepository {
         Local localArena = new Local("Arena Cultural", 300);
         Local localJogo = new Local("Estádio do Maracanã", 78000);
         Local localShow = new Local("Allianz Parque", 45000);
+        Local localCinema = new Local("Cine Belas Artes - SP", 4000);
+        Local localOlimpiadas = new Local("SoFi Stadium", 50000);
+        Local localMasterchef = new Local("Estúdios Vera Cruz - SP", 5000);
+        Local localGameCon = new Local("Expo Center Norte – SP", 10000);
 
-        // Evento evento1 = new Evento("Lollapalooza Brasil 2025", localFestival, 200.0, organizadora,"27/04/2025");
-        // organizadora.adicionarEvento(evento1);
-        // CaracteristicaFestival caracteristicaFestival = new CaracteristicaFestival(List.of("Coldplay", "Justin Timberlake", "Sepultura", "Olivia Rodrigo"), "3 dias");
-        // evento1.adicionarCaracteristica(caracteristicaFestival);
-        // eventos.add(evento1);
-
-        // Evento eventoEmBar = new Evento("Noite de Karaoke", localBar, 25.0, organizadora, "20/08/2025");
-        // organizadora.adicionarEvento(eventoEmBar);
-        // CaracteristicaBar caracteristicaBar = new CaracteristicaBar("Boteco do João", "20:00 h", "4 horas");
-        // CaracteristicaMusicaAoVivo caracteristicaMusicaAoVivoEmBar = new CaracteristicaMusicaAoVivo("Clara Nunes", "Samba");
-        // eventoEmBar.adicionarCaracteristica(caracteristicaBar);
-        // eventoEmBar.adicionarCaracteristica(caracteristicaMusicaAoVivoEmBar);
-
-
-        eventos.add(new Evento("Lollapalooza Brasil 2025", localFestival, 200.0, organizadora,"27/04/2025"));
+        eventos.add(new Evento("Lollapalooza Brasil 2025", localFestival, 200.0, organizadora,"27/09/2025"));
         eventos.add(new Evento("Noite de Karaoke", localBar, 25.0, organizadora, "20/08/2025"));
         eventos.add(new Evento("Final da Copa do Brasil", localJogo, 250.0, organizadora, "30/09/2025"));
         eventos.add(new Evento("Concerto Clássico", localTeatro, 50.0, organizadora, "01/06/2025"));
         eventos.add(new Evento("Show Coldplay Live in São Paulo", localShow, 400.0, organizadora, "15/11/2025"));
         eventos.add(new Evento("Festival de Jazz", localArena, 70.0, organizadora, "15/07/2025"));
         eventos.add(new Evento("Peça Teatral", localTeatro, 40.0, organizadora, "10/08/2025"));
-
+        eventos.add(new Evento("Festival de Cinema", localCinema, 40.0,organizadora, "30/10/2025"));
+        eventos.add(new Evento("Olimpíadas 2028", localOlimpiadas, 200.0, organizadora, "11/07/2028"));
+        eventos.add(new Evento("Final do Masterchef", localMasterchef, 0, organizadora, "20/12/2025"));
+        eventos.add(new Evento("GameCon Brasil 2025", localGameCon, 80.0, organizadora, "27/11/2026"));
         return eventos;
     }
     

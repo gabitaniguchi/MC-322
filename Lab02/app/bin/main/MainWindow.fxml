@@ -10,5 +10,7 @@
 
     <Button text="Visualizar Eventos" styleClass = "botao-personalizado" onAction="#handleVisualizarEventos"/>
     <Button text="Meus Ingressos" styleClass = "botao-personalizado" onAction="#handleMeusIngressos"/>
+    <Button text="Ofertas Marketplace" styleClass = "botao-personalizado" onAction="#handleOfertasMarketplace"/>
+    <Button text="Lucro Marketplace" styleClass = "botao-personalizado" onAction="#handleLucroMarketplace"/>
     <Button text="Sair"  styleClass = "botao-personalizado" onAction="#handleSair"/>
 </VBox>

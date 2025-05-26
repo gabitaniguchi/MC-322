@@ -56,11 +56,34 @@ public class MainWindowController {
 
     @FXML
     private void handleOfertasMarketplace(ActionEvent event) {
+        try {
+            // Carrega a nova cena do arquivo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/OfertasMarketplace.fxml"));
+            Scene newScene = new Scene(loader.load(), 800, 600);
+
+            // Pega a janela atual a partir do botão que disparou o evento
+            Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Para depuração
+        }
       
     }
 
     @FXML
     private void handleLucroMarketplace(ActionEvent event) {
+        try {
+            // Carrega a nova cena do arquivo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LucroMarketplace.fxml"));
+            Scene newScene = new Scene(loader.load(), 800, 600);
+
+            // Pega a janela atual a partir do botão que disparou o evento
+            Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
+            stage.setScene(newScene);
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Para depuração
+        }
+      
         
     }
 

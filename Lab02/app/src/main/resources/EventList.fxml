@@ -8,9 +8,9 @@
       fx:controller="lab02.ui.EventListController"
       spacing="10" alignment="TOP_CENTER"
       prefWidth="400" prefHeight="400"
-      style="-fx-padding: 80 10 10 10;">
+      style="-fx-padding: 50 10 10 10;">
 
-    <ListView fx:id="eventoListView" prefHeight="200" prefWidth="380"/>
+    <ListView fx:id="eventoListView" prefHeight="250" prefWidth="380"/>
 
     <Label text="Detalhes do Evento:" style="-fx-font-weight: bold;"/>
     <Label fx:id="nomeLabel" text="Nome:"/>
