@@ -104,25 +104,25 @@ public class Cliente implements Comparable<Cliente>{
      * Exceção referente a impossibilidade de cancelar um evento
      * Se o evento não pode ser cancelado, lança uma exceção
      */
-    public class CancelamentoNaoPermitidoException extends Exception{
+    public static class CancelamentoNaoPermitidoException extends Exception{
         public CancelamentoNaoPermitidoException(String mensagem) {
             super(mensagem);
         }
     }
 
-    public class IngressoNaoPertenceAoClienteException extends Exception{
+    public static class IngressoNaoPertenceAoClienteException extends Exception{
         public IngressoNaoPertenceAoClienteException(String mensagem){
             super(mensagem);
         }
     }
 
-    public class OfertaNaoEncontradaException extends Exception{
+    public static class OfertaNaoEncontradaException extends Exception{
         public OfertaNaoEncontradaException(String mensagem){
             super(mensagem);
         }
     }
 
-    public class SaldoInsuficienteException extends Exception{
+    public static class SaldoInsuficienteException extends Exception{
         public SaldoInsuficienteException(String mensagem){
             super(mensagem);
         }
@@ -236,7 +236,7 @@ public class Cliente implements Comparable<Cliente>{
                 throw new IngressoNaoPertenceAoClienteException("Ingresso não pertence ao cliente");
             }
             
-            marketplace.receberOferta(ingresso, precoPedido, this, true);
+            marketplace.receberOferta(ingresso, precoPedido, this, false);
             this.removerIngresso(ingresso);
 
         }catch(IngressoNaoPertenceAoClienteException e){

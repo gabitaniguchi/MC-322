@@ -22,6 +22,10 @@ public class Marketplace {
         return lucro;
     }
 
+    public double getComissao(){
+        return comissaoPorcentagem;
+    }
+
     /**
      * Retorna a lista de ingressos/ofertas disponiveis no marketplace
      * @return

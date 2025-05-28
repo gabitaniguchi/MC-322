@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -58,7 +59,13 @@ public class VenderIngressoController {
         double precoPedido = Double.parseDouble(precoVenda.getText());
         Cliente vendedor = Sessao.getClienteLogado();
         ingresso.setVendendo(true);
-        
+
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Comissão");
+        alerta.setHeaderText(null);
+        alerta.setContentText(String.format("Será cobrado R$ %.2f do valor da venda", (MarketplaceRepository.getMarketplace().getComissao()/100.0)*precoPedido));
+        alerta.showAndWait();
+
         MarketplaceRepository.getMarketplace().receberOferta(ingresso, precoPedido , vendedor, false);
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainWindow.fxml"));

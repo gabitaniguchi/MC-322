@@ -14,8 +14,8 @@ import lab02.model.Cliente;
 import lab02.model.Evento;
 import lab02.model.Marketplace;
 import lab02.model.OfertaIngresso;
+import lab02.model.Cliente.SaldoInsuficienteException;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class ComprarIngressoController {
 
@@ -73,6 +73,10 @@ public class ComprarIngressoController {
         try{
             Cliente comprador = Sessao.getClienteLogado();
             Marketplace marketplace = MarketplaceRepository.getMarketplace();
+
+            if(comprador.getSaldo() < oferta.getPrecoPedido()){
+                throw new SaldoInsuficienteException("Saldo Insuficiente");
+            }
             
             // se é uma oferta oficial, só preciso pagar corretamente
             if(oferta.getOficial()) {
@@ -89,19 +93,21 @@ public class ComprarIngressoController {
 
             Stage stage = (Stage)((javafx.scene.Node)event.getSource()).getScene().getWindow();
             stage.setScene(newScene);
-        }catch (IllegalArgumentException ex) {
-            ex.printStackTrace(); // ainda útil para debug no console
+        } catch (SaldoInsuficienteException e) {
         
-            Alert alerta = new Alert(AlertType.ERROR);
-            alerta.setContentText(ex.getMessage());
-            alerta.showAndWait();
-        }catch (IOException ex) {
-            ex.printStackTrace();
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Erro de Interface");
-            alerta.setHeaderText("Erro inesperado");
-            alerta.setContentText("Não foi possível carregar a próxima tela.");
-            alerta.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erro na compra");
+            alert.setHeaderText(null);
+            alert.setContentText("Saldo Insuficiente");
+
+            Label contentLabel = new Label("Saldo Insuficiente");
+            contentLabel.setStyle("-fx-alignment: center; -fx-text-alignment: center;");
+            contentLabel.setWrapText(true);
+            alert.getDialogPane().setContent(contentLabel);
+            alert.showAndWait();
+
+        } catch (IOException ex) {
+            ex.printStackTrace(); 
         }
     }
 
