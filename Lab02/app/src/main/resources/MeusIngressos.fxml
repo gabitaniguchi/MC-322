@@ -18,6 +18,7 @@
     <Label fx:id="eventoLabel" text="Evento:"/>
     <Label fx:id="dataLabel" text="Data:"/>
     <Label fx:id="localLabel" text="Local:"/>
+    <Label fx:id="organizadoraLabel" text="Local:"/>
 
     <Button text="Vender Ingresso" onAction="#handleVenderIngresso"/>
     <Label fx:id="messageLabel" textFill="red"/>

@@ -16,6 +16,7 @@
     <Label fx:id="nomeLabel" text="Nome:"/>
     <Label fx:id="dataLabel" text="Data:"/>
     <Label fx:id="localLabel" text="Local:"/>
+    <Label fx:id="organizadoraLabel" text="Organizadora:"/>
     <Label fx:id="precoLabel" text="Preço:"/>
 
     <Button text="Comprar Ingresso" onAction="#handleComprarIngresso" maxWidth="200"/>

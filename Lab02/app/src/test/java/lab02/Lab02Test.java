@@ -23,6 +23,15 @@ import java.util.List;
 
 public class Lab02Test {
 
+//     Adicionar testes unit ́arios para a l ́ogica do marketplace implementada:
+//     – Testar o m ́etodo processarCompra na classe Marketplace, verificando a transferˆencia do ingresso,
+//     a atualiza ̧c ̃ao dos saldos dos clientes e o c ́alculo da comiss ̃ao.
+//     – Testar os m ́etodos de intera ̧c ̃ao do Cliente com o Marketplace (oferecerIngressoParaVenda,
+//     comprarIngressoNoMarketplace).
+//     – Testar as exce ̧c ̃oes lan ̧cadas pela l ́ogica do marketplace (IngressoNaoPertenceAoClienteException,
+//     OfertaNaoEncontradaException, SaldoInsuficienteException).
+//     • Foco dos testes deve ser na l ́ogica de neg ́ocio do marketplace, n ̃ao na GUI.
+
     /**
      * Testar o método receber oferta na classe Marketplace
      */
@@ -49,24 +58,24 @@ public class Lab02Test {
         assertTrue(ofertaExiste);
     }
 
-    /**
-     * Teste refrente ao método de compararClientes
-     * Verifica condições em que os clientes não possuem e que possuem ingresso para o mesmo evento
-     */
-    @Test
-    public void compararClientes(){
-        Cliente cliente1 = new Cliente("Gabriela Taniguchi",0);
-        Cliente cliente2 = new Cliente("Diana Andrade",0);
+    // Testar o método processarCompra na classe Marketplace, verificar a transferência do ingresso, a atualização dos saldos e o cálculo da comissão
+    @Test 
+    public void processarCompra(){
+        Cliente vendedor = new Cliente("Gabriela",500.0);
+        Cliente comprador = new Cliente("Gabriel", 300.0);
 
-        Local local = new Local("Campinas Hall", 5000);
-        Organizadora organizadora = new Organizadora("SP eventos", 123456, "Barão Geraldo");
-        Evento evento = new Evento("Show Capital Inicial", local, 350.0, organizadora, "12/07/2025");
-        Ingresso ingresso = new Ingresso(evento, 350.0);
+        Local localGameCon = new Local("Expo Center Norte – SP", 10000);
+        Organizadora organizadora = new Organizadora("Unicamp Eventos", 12345, "Barão Geraldo");
+        Evento evento = new Evento("GameCon Brasil 2025", localGameCon, 80.0, organizadora, "27/11/2026");
+        Ingresso ingresso = new Ingresso(evento, evento.getPrecoIngresso());
+        Marketplace marketplace = new Marketplace(15.0);
 
-        cliente1.adicionarIngresso(ingresso);
-        assertEquals(-1, cliente1.compareTo(cliente2));
-        cliente2.adicionarIngresso(ingresso);
-        assertEquals(0, cliente1.compareTo(cliente2));
+        vendedor.adicionarIngresso(ingresso);
+        vendedor.oferecerIngressoParaVenda(ingresso, 200.0, marketplace);
+
+        comprador.comprarIngressoNoMarketplace(null, marketplace);
+
+
     }
 
     

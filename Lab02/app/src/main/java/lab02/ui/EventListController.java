@@ -32,6 +32,9 @@ public class EventListController {
     private Label localLabel;
 
     @FXML
+    private Label organizadoraLabel;
+
+    @FXML
     private Label precoLabel;
 
     @FXML
@@ -67,11 +70,13 @@ public class EventListController {
             nomeLabel.setText("Nome: " + evento.getNome());
             dataLabel.setText("Data: " + evento.getData());
             localLabel.setText("Local: " + evento.getLocal().getNome());
+            organizadoraLabel.setText("Organizadora: " + evento.getOrganizadora().getNome());
             precoLabel.setText("Preço: R$ " + evento.getPrecoIngresso());
         } else {
             nomeLabel.setText("Nome:");
             dataLabel.setText("Data:");
             localLabel.setText("Local:");
+            organizadoraLabel.setText("Organizadora: ");
             precoLabel.setText("Preço:");
         }
     }

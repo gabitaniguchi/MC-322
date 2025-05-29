@@ -30,6 +30,9 @@ public class MeusIngressosController {
     private Label localLabel;
 
     @FXML
+    private Label organizadoraLabel;
+
+    @FXML
     private Label messageLabel;
 
     private ObservableList<Ingresso> ingressos = FXCollections.observableArrayList();
@@ -65,10 +68,12 @@ public class MeusIngressosController {
             eventoLabel.setText("Evento: " + evento.getNome());
             dataLabel.setText("Data: " + evento.getData());
             localLabel.setText("Local: " + evento.getLocal().getNome());
+            organizadoraLabel.setText("Organizadora: " + evento.getOrganizadora().getNome());
         } else {
             eventoLabel.setText("Evento:");
             dataLabel.setText("Data:");
             localLabel.setText("Local: ");
+            organizadoraLabel.setText("Organizadora: ");
         }
     }
 
