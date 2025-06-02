@@ -71,36 +71,93 @@ public class Lab02Test {
         Marketplace marketplace = new Marketplace(15.0);
 
         vendedor.adicionarIngresso(ingresso);
-        vendedor.oferecerIngressoParaVenda(ingresso, 200.0, marketplace);
+        vendedor.oferecerIngressoParaVenda(ingresso, 100.0, marketplace);
 
-        comprador.comprarIngressoNoMarketplace(null, marketplace);
+        OfertaIngresso oferta = marketplace.listarOfertas().getFirst();
+        comprador.comprarIngressoNoMarketplace(oferta, marketplace);
 
+        // verifica se o comprador possui o ingresso, e se o ingresso sai da lista do vendedor e de ofertas do marketplace
+        assertTrue(comprador.getIngressos().contains(ingresso));
+        assertFalse(vendedor.getIngressos().contains(ingresso));
+        assertFalse(marketplace.listarOfertas().contains(oferta));
 
+        // verifica a comissão e os saldos dos clientes
+        assertEquals(200.0, comprador.getSaldo());
+        assertEquals(585.0, vendedor.getSaldo());
+        assertEquals(15.0, marketplace.getLucro());
     }
 
-    
-    
-    /**
-     * Teste referente ao tratamento de exceção personalizada para o caso de esgotamento de ingressos
-     * Verifica se a mensagem impressa indica o tratamento de exceção utilizado para lidar com esse caso
-     */
-    // @Test
-    // public void ingressoEsgotadosException(){
+    // Testar a exceção IngressoNaoPertenceAoClienteException
+    @Test 
+    public void ingressoNaoPertenceAoClienteException(){
 
-    //     Local local = new Local("Praça do Coco", 100);
-    //     Organizadora organizadora = new Organizadora("SP eventos", 123456, "Barão Geraldo");
-    //     Evento evento = new Evento("Corrida", local, 50.0, organizadora, "12/07/2025");
-    //     Cliente cliente = new Cliente("Gabriela Taniguchi");
+        Cliente vendedor = new Cliente("Gabriela",500.0);
 
-    //     ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    //     System.setOut(new PrintStream(outputStreamCaptor));
+        Local localGameCon = new Local("Expo Center Norte – SP", 10000);
+        Organizadora organizadora = new Organizadora("Unicamp Eventos", 12345, "Barão Geraldo");
+        Evento evento = new Evento("GameCon Brasil 2025", localGameCon, 80.0, organizadora, "27/11/2026");
+        Ingresso ingresso = new Ingresso(evento, evento.getPrecoIngresso());
+        Marketplace marketplace = new Marketplace(15.0);
 
-    //     for(int i=1; i<=101; i++) evento.venderIngresso(cliente);
+        
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+        
+        vendedor.oferecerIngressoParaVenda(ingresso, 100.0, marketplace);
 
-    //     String expectedOutput = "Ingressos Esgotados\n";
-    //     assertEquals(expectedOutput, outputStreamCaptor.toString());
-    // }
+        String expectedOutput = "Ingresso não pertence ao cliente\n";
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
+    // Testar a exceção OfertaNaoEncontradaException
+    @Test 
+    public void iofertaNaoEncontradaException(){
+
+        Cliente vendedor = new Cliente("Gabriela",500.0);
+        Cliente comprador = new Cliente("Renata", 300.0);
+
+        Local localGameCon = new Local("Expo Center Norte – SP", 10000);
+        Organizadora organizadora = new Organizadora("Unicamp Eventos", 12345, "Barão Geraldo");
+        Evento evento = new Evento("GameCon Brasil 2025", localGameCon, 80.0, organizadora, "27/11/2026");
+        Ingresso ingresso = new Ingresso(evento, evento.getPrecoIngresso());
+        Marketplace marketplace = new Marketplace(15.0);
+        OfertaIngresso oferta = new OfertaIngresso(ingresso, 100.0, vendedor, false);
+        
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        vendedor.adicionarIngresso(ingresso);
+        comprador.comprarIngressoNoMarketplace(oferta, marketplace);
+
+        String expectedOutput = "Oferta nao encontrada\n";
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
+
+
+    // Testar a exceção SaldoInsuficienteException
+    @Test 
+    public void saldoInsuficienteException(){
+
+        Cliente vendedor = new Cliente("Gabriela",500.0);
+        Cliente comprador = new Cliente("Renata", 300.0);
+
+        Local localGameCon = new Local("Expo Center Norte – SP", 10000);
+        Organizadora organizadora = new Organizadora("Unicamp Eventos", 12345, "Barão Geraldo");
+        Evento evento = new Evento("GameCon Brasil 2025", localGameCon, 80.0, organizadora, "27/11/2026");
+        Ingresso ingresso = new Ingresso(evento, evento.getPrecoIngresso());
+        Marketplace marketplace = new Marketplace(15.0);
+        
+        ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStreamCaptor));
+
+        vendedor.adicionarIngresso(ingresso);
+        vendedor.oferecerIngressoParaVenda(ingresso, 500.0, marketplace);
+        OfertaIngresso oferta = marketplace.listarOfertas().getFirst();
+        comprador.comprarIngressoNoMarketplace(oferta, marketplace);
+
+        String expectedOutput = "Saldo insuficiente\n";
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
+    }
 
    
-    
 }

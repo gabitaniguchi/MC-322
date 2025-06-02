@@ -247,7 +247,7 @@ public class Cliente implements Comparable<Cliente>{
     public void comprarIngressoNoMarketplace(OfertaIngresso oferta, Marketplace marketplace){
         try{
             if(!marketplace.listarOfertas().contains(oferta)){
-                throw new OfertaNaoEncontradaException("Oferta não encontrada");
+                throw new OfertaNaoEncontradaException("Oferta nao encontrada");
             }
 
             if(this.getSaldo() < oferta.getPrecoPedido()){
